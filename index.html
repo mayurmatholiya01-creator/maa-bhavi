@@ -34,16 +34,22 @@
             overflow-x: hidden;
         }
 
-        /* HEADER */
+        /* HEADER UPDATED FOR ICON */
         .header {
             text-align: center; margin-bottom: 20px; padding-bottom: 15px;
             border-bottom: 1px solid var(--border-subtle);
-            display: flex; align-items: center; justify-content: center; gap: 12px;
+            
+            /* New Flexbox Layout for Icon + Text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
         .header-icon {
-            width: 38px; height: 38px; object-fit: contain;
-            display: none; 
-            transform: scaleX(-1); /* Flip Icon */
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            display: none; /* Initially hidden until JS loads it */
         }
         .brand-name {
             font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700;
@@ -109,10 +115,12 @@
             position: absolute; top: 50%; left: 15px; transform: translateY(-50%);
             width: 18px; fill: var(--text-dim); pointer-events: none;
         }
+        
         .clear-icon {
             position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
             width: 24px; height: 24px;
-            display: none; align-items: center; justify-content: center;
+            display: none; 
+            align-items: center; justify-content: center;
             cursor: pointer; z-index: 10;
         }
         .clear-icon svg { width: 16px; fill: var(--text-dim); transition: fill 0.2s; }
@@ -123,7 +131,10 @@
             background: #111; border: 1px solid var(--border-subtle);
             border-radius: 10px; z-index: 50; display: none;
             box-shadow: 0 10px 30px rgba(0,0,0,0.9); 
-            max-height: 180px; overflow-y: auto; scrollbar-width: none; 
+            max-height: 180px; 
+            overflow-y: auto;
+            scroll-behavior: smooth; 
+            scrollbar-width: none; 
         }
         .dropdown::-webkit-scrollbar { display: none; }
         .dd-item { padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc; font-size: 0.85rem; }
@@ -137,10 +148,9 @@
             height: 50px; display: flex; flex-direction: row; align-items: center; justify-content: center;
             gap: 6px; cursor: pointer; transition: all 0.2s; will-change: transform;
         }
-        /* SVG Control */
-        .tile-btn svg { width: 18px; height: 18px; fill: var(--text-dim); transition: fill 0.2s; }
+        /* Buttons kept as SVG for now to avoid breaking */
+        .tile-btn svg { width: 18px; height: 18px; fill: var(--text-dim); }
         .tile-btn span { font-size: 0.7rem; font-weight: 600; color: var(--text-dim); }
-        
         .tile-btn.active { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.15); }
         .tile-btn.active svg { fill: var(--accent-blue); }
         .tile-btn.active span { color: #fff; }
@@ -182,24 +192,32 @@
 
         /* LOG LIST */
         .swipe-wrapper {
-            display: flex; overflow-x: auto; scroll-snap-type: x mandatory; 
-            scrollbar-width: none; border-radius: 8px; margin-bottom: 8px; background: transparent;
+            display: flex;
+            overflow-x: auto; 
+            scroll-snap-type: x mandatory; 
+            scrollbar-width: none; 
+            border-radius: 8px; margin-bottom: 8px; background: transparent;
         }
         .swipe-wrapper::-webkit-scrollbar { display: none; }
 
         .log-row {
-            min-width: 100%; scroll-snap-align: start;
+            min-width: 100%; 
+            scroll-snap-align: start;
             display: flex; justify-content: space-between; align-items: center;
             background: linear-gradient(90deg, rgba(255,255,255,0.03), transparent);
-            padding: 10px 12px; border-left: 2px solid var(--border-subtle);
-            transition: all 0.3s ease; cursor: pointer;
+            padding: 10px 12px; 
+            border-left: 2px solid var(--border-subtle);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
         .log-row.expanded {
             background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent);
             padding-bottom: 15px;
         }
         .log-row.expanded .l-co {
-            white-space: normal; word-break: break-word; color: var(--accent-blue);
+            white-space: normal;
+            word-break: break-word;
+            color: var(--accent-blue);
         }
 
         .delete-slide-btn {
@@ -266,17 +284,13 @@
     <span class="label">Work Type</span>
     <div class="btn-grid section-gap">
         <div class="tile-btn" onclick="setType(this, 'Container')">
-            <svg viewBox="0 0 24 24">
-                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2h2v-2h-2v2zm0-4h2v-2h-2v2zm0-4h2V7h-2v2z"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M4 15h16v-2H4v2zm0 4h16v-2H4v2zm0-8h16V9H4v2zm0-6v2h16V5H4z"/></svg>
             <span>Container</span>
         </div>
-        
         <div class="tile-btn" onclick="setType(this, 'Hour')">
             <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
             <span>Hour</span>
         </div>
-        
         <div class="tile-btn" onclick="setType(this, 'Shift')">
             <svg viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
             <span>Shift</span>
@@ -306,16 +320,20 @@
         let selType = null;
         let isToday = true;
 
-        // HEADER ICON LOAD
+        // --- ICON LOADING LOGIC ---
+        // Check if imagedata.js loaded successfully
         if (typeof appIcons !== 'undefined' && appIcons.header) {
             const hImg = document.getElementById('img-header');
             hImg.src = appIcons.header;
-            hImg.style.display = 'block';
+            hImg.style.display = 'block'; // Show icon only if loaded
+        } else {
+            console.log("Header icon not found in imagedata.js");
         }
 
         // DATE LOGIC
         const dateBtn = document.getElementById('date-toggle-btn');
         const dEl = document.getElementById('date-display');
+        
         dateBtn.onclick = () => { 
             isToday = !isToday; 
             dEl.innerText = isToday ? "Today, 31/12/2025" : "Yesterday, 30/12/2025"; 
@@ -338,9 +356,11 @@
                 m.forEach(i => {
                     const d = document.createElement('div'); d.className = 'dd-item'; d.innerText = i;
                     d.onclick = () => { 
-                        coIn.value = i; dd.style.display='none'; 
+                        coIn.value = i; 
+                        dd.style.display='none'; 
                         coIn.classList.remove('input-error');
-                        clearBtn.style.display = 'flex'; coIn.blur(); 
+                        clearBtn.style.display = 'flex';
+                        coIn.blur(); 
                     };
                     dd.appendChild(d);
                 });
