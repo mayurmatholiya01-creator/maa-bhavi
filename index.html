@@ -4,404 +4,372 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Maa Bhavani Lifters</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Ultra Premium Palette */
-            --bg-body: #050505;
-            --bg-card: rgba(20, 20, 25, 0.6);
-            --border-glass: rgba(255, 255, 255, 0.08);
-            --neon-blue: #00f3ff; /* Cyber Blue */
+            /* AURORA PALETTE */
+            --bg-deep: #0f0c29;
+            --purple-glow: #7b2ff7;
+            --pink-glow: #f107a3;
+            --cyan-accent: #00f2ff;
+            --glass-surface: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.12);
             --text-main: #ffffff;
-            --text-muted: #8b9bb4;
-            --success-green: #00ff9d;
+            --text-muted: #bdaed9; /* Light lavender grey */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            background-color: var(--bg-body);
-            /* Rich Mesh Gradient */
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 89, 255, 0.08) 0%, transparent 40%);
+            background-color: var(--bg-deep);
+            font-family: 'Outfit', sans-serif;
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
             min-height: 100vh;
-            padding-bottom: 30px;
+            padding-bottom: 40px;
+            overflow-x: hidden;
+            
+            /* THE AURORA GRADIENT BACKGROUND (CSS Only - No Lag) */
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(123, 47, 247, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 100% 0%, rgba(241, 7, 163, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(0, 242, 255, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
         }
 
-        /* --- 1. PRO NAVBAR HEADER --- */
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 18px 20px;
-            background: rgba(10, 10, 15, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border-glass);
-            margin-bottom: 25px;
+        /* --- 1. GLASS HEADER --- */
+        .glass-header {
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+            background: rgba(15, 12, 41, 0.7); /* Semi-transparent */
+            backdrop-filter: blur(20px); /* The Blur Effect */
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
             position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        }
-
-        .brand-logo {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: flex; align-items: center; gap: 10px;
-        }
-        
-        .brand-logo svg { width: 24px; height: 24px; fill: var(--neon-blue); }
-
-        /* --- CONTAINER padding for rest of body --- */
-        .container { padding: 0 20px; }
-
-        /* --- 2. PROFILE & DATE ROW --- */
-        .info-panel {
-            display: flex; justify-content: space-between; align-items: center;
             margin-bottom: 30px;
         }
 
-        .user-badge {
+        .brand {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            /* Gradient Text */
+            background: linear-gradient(to right, #fff, #e0c3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             display: flex; align-items: center; gap: 10px;
         }
-        .user-img {
-            width: 40px; height: 40px; border-radius: 50%;
-            border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+
+        .brand svg { width: 24px; height: 24px; fill: var(--cyan-accent); filter: drop-shadow(0 0 5px var(--cyan-accent)); }
+
+        .container { padding: 0 20px; }
+
+        /* --- 2. PROFILE & DATE CARD --- */
+        .glass-card {
+            background: var(--glass-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 12px 15px;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
-        .user-details h3 { font-size: 0.9rem; font-weight: 600; color: #fff; }
-        .user-details p { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.5px; }
+
+        .user-info { display: flex; align-items: center; gap: 12px; }
+        
+        .avatar {
+            width: 42px; height: 42px; border-radius: 50%;
+            border: 2px solid var(--purple-glow);
+            padding: 2px; /* Gap for border */
+            background-clip: content-box;
+        }
+        
+        .u-text h3 { font-size: 0.95rem; font-weight: 700; }
+        .u-text p { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.5px; }
 
         .date-badge {
+            font-size: 0.85rem; font-weight: 600;
+            color: var(--cyan-accent);
+            background: rgba(0, 242, 255, 0.1);
+            padding: 8px 12px; border-radius: 8px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        /* --- 3. INPUTS (Cutout Look) --- */
+        .section-title {
+            font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px;
+            text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700;
+            margin-left: 5px;
+        }
+
+        .input-group { position: relative; margin-bottom: 30px; }
+
+        .aurora-input {
+            width: 100%; height: 55px;
+            background: rgba(0, 0, 0, 0.3); /* Darker than body for cutout effect */
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0 20px 0 50px; /* Fixed padding */
+            color: #fff; font-size: 1rem; font-family: 'Outfit', sans-serif;
+            outline: none; transition: 0.3s;
+        }
+
+        .aurora-input:focus {
+            border-color: var(--purple-glow);
+            box-shadow: 0 0 15px rgba(123, 47, 247, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .icon-left {
+            position: absolute; top: 50%; left: 18px; transform: translateY(-50%);
+            width: 20px; fill: var(--text-muted);
+        }
+
+        /* Dropdown */
+        .dropdown-list {
+            position: absolute; top: 110%; left: 0; right: 0;
+            background: #1a1638; border: 1px solid var(--glass-border);
+            border-radius: 12px; z-index: 50; display: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+        .dd-item { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; color: #ddd; }
+        .dd-item:active { background: var(--purple-glow); color: #fff; }
+
+        /* --- 4. NEON BUTTONS GRID --- */
+        .grid-buttons {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 35px;
+        }
+
+        .neon-btn {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--neon-blue);
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
-
-        /* --- 3. INPUT FIELDS (Fixed Cursor & Spacing) --- */
-        .label {
-            font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px;
-            text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
-            display: block;
-        }
-
-        .input-wrapper { position: relative; margin-bottom: 25px; }
-
-        .styled-input {
-            width: 100%;
-            height: 52px; /* Fixed height to control cursor */
-            padding: 0 15px 0 45px; /* Vertical padding 0, use line-height or flex */
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            border-radius: 10px;
-            color: #fff;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-            transition: 0.3s;
-            display: flex; align-items: center; /* Ensures text is centered */
-        }
-
-        .styled-input:focus {
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
-        }
-
-        .input-icon {
-            position: absolute; top: 50%; left: 15px;
-            transform: translateY(-50%);
-            width: 18px; fill: var(--text-muted);
-            pointer-events: none;
-        }
-
-        /* Suggestions Dropdown */
-        .dropdown {
-            position: absolute; top: 105%; left: 0; right: 0;
-            background: #121216; border: 1px solid var(--border-glass);
-            border-radius: 10px; z-index: 50; display: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            max-height: 200px; overflow-y: auto;
-        }
-        .dd-item { padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; color: #ccc; cursor: pointer; }
-        .dd-item:hover, .dd-item:active { background: rgba(0, 243, 255, 0.1); color: var(--neon-blue); }
-
-        /* --- 4. BUTTONS (Cards) --- */
-        .cards-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 30px;
-        }
-
-        .option-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            border-radius: 10px;
-            padding: 15px 5px;
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            height: 90px;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            gap: 10px;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative; overflow: hidden;
         }
 
-        .option-card svg { width: 24px; height: 24px; fill: var(--text-muted); transition: 0.2s; }
-        .option-card span { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+        .neon-btn svg { width: 28px; height: 28px; fill: var(--text-muted); transition: 0.2s; }
+        .neon-btn span { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); transition: 0.2s; }
 
-        .option-card.active {
-            border-color: var(--neon-blue);
-            background: rgba(0, 243, 255, 0.05);
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+        /* Active State (The Magic) */
+        .neon-btn.active {
+            border-color: var(--purple-glow);
+            background: linear-gradient(135deg, rgba(123, 47, 247, 0.2), rgba(241, 7, 163, 0.1));
+            box-shadow: 0 0 20px rgba(123, 47, 247, 0.2);
+            transform: translateY(-2px);
         }
-        .option-card.active svg { fill: var(--neon-blue); transform: scale(1.1); }
-        .option-card.active span { color: #fff; }
+        .neon-btn.active svg { fill: #fff; transform: scale(1.1); filter: drop-shadow(0 0 5px var(--purple-glow)); }
+        .neon-btn.active span { color: #fff; }
 
-        /* --- 5. QUANTITY SECTION (Fixed Spacing) --- */
-        #quantity-panel { display: none; animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        /* --- 5. VALUE INPUT & SUBMIT --- */
+        #value-section { display: none; animation: popUp 0.3s ease-out; }
+        @keyframes popUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        .value-wrapper { margin-bottom: 25px; }
         
-        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .qty-wrapper {
-            margin-bottom: 25px; /* Added spacing between input and button */
+        .big-input {
+            width: 100%; height: 70px;
+            background: transparent; border: 2px solid var(--glass-border);
+            border-radius: 14px;
+            text-align: center; color: #fff;
+            font-size: 2rem; font-weight: 700;
+            outline: none; font-family: 'Outfit', sans-serif;
         }
+        .big-input:focus { border-color: var(--pink-glow); box-shadow: 0 0 15px rgba(241, 7, 163, 0.2); }
 
-        .qty-input {
-            width: 100%; height: 60px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border-glass);
-            border-radius: 10px;
-            text-align: center;
-            font-size: 1.5rem; font-weight: 700; color: #fff;
-            outline: none; font-family: 'Rajdhani', sans-serif;
+        .cta-btn {
+            width: 100%; padding: 18px;
+            /* Aurora Gradient Button */
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink-glow));
+            color: #fff; border: none; border-radius: 12px;
+            font-size: 1.1rem; font-weight: 700; letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(123, 47, 247, 0.4);
+            cursor: pointer; transition: 0.2s;
         }
-        .qty-input:focus { border-color: var(--neon-blue); }
+        .cta-btn:active { transform: scale(0.98); }
 
-        .submit-btn {
-            width: 100%; height: 50px;
-            background: var(--neon-blue);
-            color: #000;
-            border: none; border-radius: 8px;
-            font-size: 0.95rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3);
-            transition: transform 0.1s;
+        /* --- 6. HISTORY --- */
+        .history-label {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 15px; margin-top: 40px;
+            border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;
         }
-        .submit-btn:active { transform: scale(0.98); }
+        .hl-main { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
+        .hl-sub { font-size: 0.7rem; color: var(--purple-glow); }
 
-        /* --- 6. HISTORY LIST --- */
-        .history-header {
-            font-size: 0.8rem; color: var(--text-muted); 
-            border-bottom: 1px solid var(--border-glass); 
-            padding-bottom: 8px; margin-bottom: 15px; margin-top: 40px;
-            display: flex; justify-content: space-between;
-        }
-
-        .log-item {
+        .log-entry {
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255,255,255,0.02);
-            border-left: 2px solid var(--neon-blue);
-            border-radius: 0 8px 8px 0;
-            padding: 12px 15px; margin-bottom: 10px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 15px; margin-bottom: 10px;
         }
 
-        .log-left { display: flex; flex-direction: column; gap: 3px; }
-        .log-date { font-size: 0.7rem; color: var(--neon-blue); font-family: 'Rajdhani', sans-serif; }
-        .log-co { font-size: 0.95rem; color: #fff; font-weight: 500; }
+        .log-left div:first-child { font-size: 0.75rem; color: var(--pink-glow); font-weight: 600; margin-bottom: 4px; }
+        .log-left div:last-child { font-size: 1rem; font-weight: 500; }
 
         .log-right { text-align: right; }
-        .log-val { font-size: 1.2rem; font-weight: 700; color: #fff; font-family: 'Rajdhani', sans-serif; line-height: 1; }
-        .log-type { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
+        .log-right div:first-child { font-size: 1.4rem; font-weight: 700; line-height: 1; }
+        .log-right div:last-child { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
 
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="brand-logo">
+    <nav class="glass-header">
+        <div class="brand">
             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
             MAA BHAVANI LIFTERS
         </div>
     </nav>
 
     <div class="container">
-        <div class="info-panel">
-            <div class="user-badge">
-                <img src="https://i.pravatar.cc/150?img=11" alt="Driver" class="user-img">
-                <div class="user-details">
+        
+        <div class="glass-card">
+            <div class="user-info">
+                <img src="https://i.pravatar.cc/150?img=11" class="avatar">
+                <div class="u-text">
                     <h3>Ramesh Bhai</h3>
                     <p>DRIVER ID: 402</p>
                 </div>
             </div>
-            <div class="date-badge" id="dateDisplay">Today, 31/12/2025</div>
+            <div class="date-badge" id="date-txt">Today, 31/12/2025</div>
         </div>
 
-        <label class="label">Select Client</label>
-        <div class="input-wrapper">
-            <svg class="search-icon input-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-            <input type="text" id="companyInput" class="styled-input" placeholder="Search Company Name..." autocomplete="off">
-            <div id="suggestions" class="dropdown"></div>
+        <div class="section-title">Select Client</div>
+        <div class="input-group">
+            <svg class="icon-left" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" id="co-in" class="aurora-input" placeholder="Search Company..." autocomplete="off">
+            <div id="dd-list" class="dropdown-list"></div>
         </div>
 
-        <label class="label">Select Work Type</label>
-        <div class="cards-grid">
-            <div class="option-card" onclick="selectWork(this, 'Container')">
+        <div class="section-title">Work Type</div>
+        <div class="grid-buttons">
+            <div class="neon-btn" onclick="setType(this, 'Container')">
                 <svg viewBox="0 0 24 24"><path d="M4 15h16v-2H4v2zm0 4h16v-2H4v2zm0-8h16V9H4v2zm0-6v2h16V5H4z"/></svg>
                 <span>Container</span>
             </div>
-            <div class="option-card" onclick="selectWork(this, 'Hour')">
+            <div class="neon-btn" onclick="setType(this, 'Hour')">
                 <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
                 <span>Hour</span>
             </div>
-            <div class="option-card" onclick="selectWork(this, 'Shift')">
+            <div class="neon-btn" onclick="setType(this, 'Shift')">
                 <svg viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
                 <span>Shift</span>
             </div>
         </div>
 
-        <div id="quantity-panel">
-            <label class="label" id="qtyLabel">Enter Value</label>
-            <div class="qty-wrapper">
-                <input type="number" id="qtyInput" class="qty-input" placeholder="0">
+        <div id="value-section">
+            <div class="section-title">Enter Quantity</div>
+            <div class="value-wrapper">
+                <input type="number" id="val-in" class="big-input" placeholder="0">
             </div>
-            <button class="submit-btn" onclick="submitData()">CONFIRM ENTRY</button>
+            <button class="cta-btn" onclick="submit()">CONFIRM ENTRY</button>
         </div>
 
-        <div class="history-header">
-            <span>RECENT ACTIVITY</span>
-            <span>LAST 2 DAYS</span>
+        <div class="history-label">
+            <span class="hl-main">RECENT LOGS</span>
+            <span class="hl-sub">LAST 2 DAYS</span>
         </div>
-        <div id="historyList">
+        <div id="log-list">
             </div>
 
     </div>
 
     <script>
-        // --- DATA & SETUP ---
+        // CONFIG
         const companies = ["Simpolo Ceramics", "Sunheart Tiles", "Varmora Granito", "Qutone Ceramic", "Lioli Ceramica", "Monalisa Tiles", "Other"];
-        let selectedType = null;
+        const coIn = document.getElementById('co-in');
+        const dd = document.getElementById('dd-list');
+        let selType = null;
         let isToday = true;
 
-        // Date Logic (Dynamic)
-        const dateEl = document.getElementById('dateDisplay');
-        
-        function updateDate() {
-            // Hardcoded Logic for Demo switching
-            if(isToday) {
-                dateEl.innerText = "Today, 31/12/2025";
-            } else {
-                dateEl.innerText = "Yesterday, 30/12/2025";
-            }
-        }
-        
-        // Toggle date on click (for Demo)
-        dateEl.addEventListener('click', () => {
+        // 1. DATE DEMO
+        const dTxt = document.getElementById('date-txt');
+        dTxt.onclick = () => {
             isToday = !isToday;
-            updateDate();
-        });
+            dTxt.innerText = isToday ? "Today, 31/12/2025" : "Yesterday, 30/12/2025";
+        }
 
-        // --- SEARCH LOGIC ---
-        const coIn = document.getElementById('companyInput');
-        const list = document.getElementById('suggestions');
-
+        // 2. SEARCH
         coIn.addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            list.innerHTML = '';
-            
-            if(!val) { list.style.display='none'; return; }
-            
-            const match = companies.filter(c => c.toLowerCase().includes(val));
-            if(match.length) {
-                list.style.display = 'block';
-                match.forEach(m => {
+            const v = e.target.value.toLowerCase();
+            dd.innerHTML = '';
+            if(!v) { dd.style.display='none'; return; }
+            const m = companies.filter(c => c.toLowerCase().includes(v));
+            if(m.length) {
+                dd.style.display='block';
+                m.forEach(i => {
                     const d = document.createElement('div');
                     d.className = 'dd-item';
-                    d.innerText = m;
-                    d.onclick = () => { coIn.value = m; list.style.display = 'none'; };
-                    list.appendChild(d);
+                    d.innerText = i;
+                    d.onclick = () => { coIn.value = i; dd.style.display='none'; };
+                    dd.appendChild(d);
                 });
-            } else list.style.display = 'none';
+            } else dd.style.display='none';
         });
 
-        // Hide dropdown on outside click
-        document.addEventListener('click', (e) => {
-            if(!e.target.closest('.input-wrapper')) list.style.display = 'none';
-        });
+        document.onclick = (e) => { if(!e.target.closest('.input-group')) dd.style.display='none'; }
 
-        // --- SELECTION LOGIC ---
-        function selectWork(el, type) {
-            // Reset UI
-            document.querySelectorAll('.option-card').forEach(c => c.classList.remove('active'));
+        // 3. SELECT TYPE
+        function setType(el, type) {
+            document.querySelectorAll('.neon-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
-            selectedType = type;
+            selType = type;
 
-            // Show Qty Panel
-            const panel = document.getElementById('quantity-panel');
-            panel.style.display = 'block';
+            const sec = document.getElementById('value-section');
+            sec.style.display = 'block';
             
-            // Focus Input
-            const inp = document.getElementById('qtyInput');
+            const inp = document.getElementById('val-in');
             inp.value = '';
             inp.focus();
 
-            // Update Label Placeholder
+            // Dynamic Placeholder
             if(type === 'Container') inp.placeholder = "No. of Containers";
             if(type === 'Hour') inp.placeholder = "Total Hours";
             if(type === 'Shift') inp.placeholder = "Shift Count";
         }
 
-        // --- SUBMIT LOGIC ---
-        function submitData() {
-            const btn = document.querySelector('.submit-btn');
+        // 4. SUBMIT
+        function submit() {
             const co = coIn.value;
-            const val = document.getElementById('qtyInput').value;
+            const val = document.getElementById('val-in').value;
 
-            if(!co || !selectedType || !val) {
-                alert("Please fill all fields properly.");
-                return;
-            }
+            if(!co || !selType || !val) { alert("Please complete form"); return; }
 
-            // Button Animation
-            btn.innerText = "SUCCESS ✓";
-            btn.style.background = "var(--success-green)";
-            btn.style.color = "#000";
-
-            // Add to List
-            const history = document.getElementById('historyList');
-            const dateStr = dateEl.innerText.split(',')[0]; // "Today" or "Yesterday"
+            const btn = document.querySelector('.cta-btn');
+            const oldTxt = btn.innerText;
             
+            btn.innerText = "SUCCESS ✓";
+            
+            const list = document.getElementById('log-list');
+            const dStr = dTxt.innerText.split(', ')[1]; // Get "31/12/2025"
+            
+            // Rich Log Entry
             const item = `
-            <div class="log-item" style="animation: slideUp 0.3s">
+            <div class="log-entry" style="animation: popUp 0.3s">
                 <div class="log-left">
-                    <div class="log-date">${dateStr}</div>
-                    <div class="log-co">${co}</div>
+                    <div>${dStr}</div>
+                    <div>${co}</div>
                 </div>
                 <div class="log-right">
-                    <div class="log-val">${val}</div>
-                    <div class="log-type">${selectedType}</div>
+                    <div>${val}</div>
+                    <div>${selType}</div>
                 </div>
             </div>`;
             
-            history.insertAdjacentHTML('afterbegin', item);
+            list.insertAdjacentHTML('afterbegin', item);
 
-            // Reset Form
             setTimeout(() => {
-                btn.innerText = "CONFIRM ENTRY";
-                btn.style.background = "var(--neon-blue)";
-                btn.style.color = "#000";
-                
-                document.getElementById('quantity-panel').style.display = 'none';
+                btn.innerText = oldTxt;
+                document.getElementById('value-section').style.display = 'none';
                 coIn.value = '';
-                document.querySelectorAll('.option-card').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.neon-btn').forEach(b => b.classList.remove('active'));
             }, 1500);
         }
     </script>
