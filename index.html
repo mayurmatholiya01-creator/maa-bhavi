@@ -89,12 +89,14 @@
         }
         .section-gap { margin-bottom: 20px; }
 
-        /* SEARCH BOX */
+        /* SEARCH BOX & ONE-TAP CLEAR */
         .search-container { position: relative; }
         .search-box {
             width: 100%; height: 48px; background: #0f0f0f;
             border: 1px solid var(--border-subtle); border-radius: 10px;
-            padding: 0 20px 0 45px; color: #fff; font-size: 0.95rem;
+            /* Right padding badhaya taaki text X icon ke neeche na jaye */
+            padding: 0 40px 0 45px; 
+            color: #fff; font-size: 0.95rem;
             outline: none; transition: border-color 0.2s; -webkit-appearance: none;
         }
         .search-box:focus { border-color: var(--accent-blue); }
@@ -102,12 +104,31 @@
             position: absolute; top: 50%; left: 15px; transform: translateY(-50%);
             width: 18px; fill: var(--text-dim); pointer-events: none;
         }
+        
+        /* NEW CLEAR ICON STYLE */
+        .clear-icon {
+            position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
+            width: 24px; height: 24px;
+            display: none; /* Initially Hidden */
+            align-items: center; justify-content: center;
+            cursor: pointer; z-index: 10;
+        }
+        .clear-icon svg { width: 16px; fill: var(--text-dim); transition: fill 0.2s; }
+        .clear-icon:active svg { fill: #fff; }
+
+        /* DROPDOWN - SCROLL FIX */
         .dropdown {
             position: absolute; top: 105%; left: 0; right: 0;
             background: #111; border: 1px solid var(--border-subtle);
             border-radius: 10px; z-index: 50; display: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9); max-height: 180px; overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9); 
+            max-height: 180px; 
+            overflow-y: auto;
+            scroll-behavior: smooth; /* Smooth Scroll */
+            scrollbar-width: none; /* Firefox Hidden Scroll */
         }
+        .dropdown::-webkit-scrollbar { display: none; /* Chrome/Safari Hidden Scroll */ }
+        
         .dd-item { padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc; font-size: 0.85rem; }
         .dd-item:active { background: #1e293b; color: var(--accent-blue); }
 
@@ -136,7 +157,7 @@
         }
         .qty-input:focus { border-color: var(--accent-blue); }
 
-        /* STEALTH CONFIRM BUTTON */
+        /* CONFIRM BUTTON */
         .confirm-btn {
             width: 100%; padding: 16px;
             background: linear-gradient(180deg, #2d3748 0%, #1a202c 100%);
@@ -160,7 +181,7 @@
             color: var(--text-dim); font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
         }
 
-        /* --- LOG LIST (SWIPE + EXPAND LOGIC) --- */
+        /* LOG LIST */
         .swipe-wrapper {
             display: flex;
             overflow-x: auto; 
@@ -178,10 +199,8 @@
             padding: 10px 12px; 
             border-left: 2px solid var(--border-subtle);
             transition: all 0.3s ease;
-            cursor: pointer; /* Clickable indication */
+            cursor: pointer;
         }
-
-        /* EXPANDED STATE (Long Name) */
         .log-row.expanded {
             background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent);
             padding-bottom: 15px;
@@ -192,7 +211,6 @@
             color: var(--accent-blue);
         }
 
-        /* DELETE BUTTON BEHIND */
         .delete-slide-btn {
             min-width: 70px; background: var(--delete-bg);
             display: flex; align-items: center; justify-content: center;
@@ -200,22 +218,17 @@
         }
         .delete-slide-btn svg { width: 20px; fill: #fff; }
 
-        /* CONTENT LAYOUT */
         .l-left { 
             display: flex; flex-direction: column; gap: 2px; 
-            flex: 1; min-width: 0; /* Important for ellipsis */
+            flex: 1; min-width: 0;
             padding-right: 15px; 
         }
         .l-date { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; color: var(--accent-blue); }
-        
         .l-co { 
             font-size: 0.9rem; font-weight: 600; color: #eee; 
-            /* Truncation Magic */
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
             transition: all 0.3s;
         }
-        
-        /* Fixed Width Right Side */
         .l-right { 
             display: flex; flex-direction: column; 
             align-items: center; justify-content: center; 
@@ -265,6 +278,11 @@
     <div class="search-container section-gap">
         <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         <input type="text" id="co-in" class="search-box" placeholder="Search Company..." autocomplete="off">
+        
+        <div id="clear-btn" class="clear-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </div>
+
         <div id="dd" class="dropdown"></div>
     </div>
 
@@ -300,6 +318,7 @@
         const companies = ["Simpolo Ceramics", "Sunheart Tiles", "Varmora Granito", "Qutone Ceramic", "Lioli Ceramica", "Monalisa Tiles", "Asian Granito India Limited (AGL)", "Other"];
         const coIn = document.getElementById('co-in');
         const dd = document.getElementById('dd');
+        const clearBtn = document.getElementById('clear-btn'); // New Element
         const qtyIn = document.getElementById('qty-in');
         let selType = null;
         let isToday = true;
@@ -315,23 +334,49 @@
             setTimeout(() => dateBtn.style.borderColor = "var(--border-subtle)", 200);
         }
 
-        // SEARCH
+        // --- SEARCH LOGIC UPDATED ---
+        
+        // Input Event: Show X icon if text exists
         coIn.addEventListener('input', (e) => {
             coIn.classList.remove('input-error');
             const v = e.target.value.toLowerCase();
+            
+            // Toggle Clear Button
+            if(v.length > 0) clearBtn.style.display = 'flex';
+            else clearBtn.style.display = 'none';
+
             dd.innerHTML = '';
             if(!v) { dd.style.display='none'; return; }
+            
             const m = companies.filter(c => c.toLowerCase().includes(v));
             if(m.length) {
                 dd.style.display='block';
                 m.forEach(i => {
                     const d = document.createElement('div'); d.className = 'dd-item'; d.innerText = i;
-                    d.onclick = () => { coIn.value = i; dd.style.display='none'; coIn.classList.remove('input-error'); };
+                    d.onclick = () => { 
+                        coIn.value = i; 
+                        dd.style.display='none'; 
+                        coIn.classList.remove('input-error');
+                        clearBtn.style.display = 'flex'; // Keep X visible after selection
+                        coIn.blur(); // KEYBOARD TRAP FIX: Close keyboard instantly
+                    };
                     dd.appendChild(d);
                 });
             } else dd.style.display='none';
         });
-        document.onclick = (e) => { if(!e.target.closest('.search-container')) dd.style.display='none'; }
+
+        // One-Tap Clear Event
+        clearBtn.onclick = () => {
+            coIn.value = '';
+            dd.style.display = 'none';
+            clearBtn.style.display = 'none';
+            coIn.focus(); // Re-open keyboard as requested
+        };
+
+        document.onclick = (e) => { 
+            // Close dropdown if clicked outside
+            if(!e.target.closest('.search-container')) dd.style.display='none'; 
+        }
 
         // WORK TYPE
         function setType(el, type) {
@@ -384,7 +429,6 @@
             const dStr = dEl.innerText.split(', ')[1];
             const rowId = Date.now();
             
-            // Create Row with Click-to-Expand Logic
             const row = `
             <div class="swipe-wrapper" id="wrapper-${rowId}">
                 <div class="log-row" onclick="toggleRow(this)">
@@ -418,6 +462,7 @@
                 });
                 selType = null;
                 qtyIn.placeholder = "Enter Quantity";
+                clearBtn.style.display = 'none'; // Hide X on reset
             }, 1500);
         }
 
@@ -426,7 +471,6 @@
             el.classList.toggle('expanded');
             if(navigator.vibrate) navigator.vibrate(10);
             
-            // Auto collapse after 10s
             if(el.classList.contains('expanded')) {
                 setTimeout(() => {
                     if(el.classList.contains('expanded')) el.classList.remove('expanded');
