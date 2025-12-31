@@ -4,339 +4,404 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Maa Bhavani Lifters</title>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Rich Premium Theme (Deep Space) */
-            --bg-deep: #050b14;
-            --glass-panel: rgba(30, 41, 59, 0.7); /* Darker glass */
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --neon-blue: #0ea5e9; /* Sky Blue Neon */
-            --silver: #e2e8f0;
+            /* Ultra Premium Palette */
+            --bg-body: #050505;
+            --bg-card: rgba(20, 20, 25, 0.6);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --neon-blue: #00f3ff; /* Cyber Blue */
             --text-main: #ffffff;
-            --text-dim: #94a3b8;
-            --success: #10b981;
+            --text-muted: #8b9bb4;
+            --success-green: #00ff9d;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Exo 2', sans-serif; -webkit-tap-highlight-color: transparent; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            background-color: var(--bg-deep);
-            background-image: radial-gradient(circle at 50% 0%, #172554 0%, #050b14 60%);
+            background-color: var(--bg-body);
+            /* Rich Mesh Gradient */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 89, 255, 0.08) 0%, transparent 40%);
             color: var(--text-main);
+            font-family: 'Inter', sans-serif;
             min-height: 100vh;
-            padding: 20px 15px;
+            padding-bottom: 30px;
         }
 
-        /* --- 1. Top Brand Header --- */
-        .brand-header {
-            text-align: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .brand-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(to bottom, #ffffff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        /* --- 2. Profile & Date Row --- */
-        .info-bar {
+        /* --- 1. PRO NAVBAR HEADER --- */
+        .navbar {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
+            padding: 18px 20px;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-glass);
+            margin-bottom: 25px;
+            position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .brand-logo {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        
+        .brand-logo svg { width: 24px; height: 24px; fill: var(--neon-blue); }
+
+        /* --- CONTAINER padding for rest of body --- */
+        .container { padding: 0 20px; }
+
+        /* --- 2. PROFILE & DATE ROW --- */
+        .info-panel {
+            display: flex; justify-content: space-between; align-items: center;
             margin-bottom: 30px;
         }
 
-        /* Profile (Left) */
-        .profile-capsule {
+        .user-badge {
             display: flex; align-items: center; gap: 10px;
         }
-        .p-img {
-            width: 42px; height: 42px;
-            border-radius: 50%;
+        .user-img {
+            width: 40px; height: 40px; border-radius: 50%;
             border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
         }
-        .p-name { font-size: 0.9rem; font-weight: 700; color: var(--silver); }
-        .p-id { font-size: 0.7rem; color: var(--text-dim); }
+        .user-details h3 { font-size: 0.9rem; font-weight: 600; color: #fff; }
+        .user-details p { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.5px; }
 
-        /* Date Box (Right - WIDE) */
-        .date-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            padding: 10px 20px;
-            border-radius: 8px;
-            display: flex; align-items: center; gap: 8px;
-            min-width: 140px; /* Increased Width */
-            justify-content: center;
-        }
-        .date-box svg { width: 16px; fill: var(--neon-blue); }
-        .date-text { font-size: 0.85rem; font-weight: 600; color: #fff; white-space: nowrap; }
-
-        /* --- 3. Premium Search --- */
-        .input-label {
-            font-size: 0.75rem; color: var(--neon-blue); margin-bottom: 8px; 
-            text-transform: uppercase; letter-spacing: 1px; font-weight: 700;
+        .date-badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--neon-blue);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
-        .search-wrapper { position: relative; margin-bottom: 30px; }
+        /* --- 3. INPUT FIELDS (Fixed Cursor & Spacing) --- */
+        .label {
+            font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px;
+            text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+            display: block;
+        }
 
-        .search-input {
-            width: 100%; padding: 16px 16px 16px 45px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            color: white; font-size: 1rem; outline: none;
-            backdrop-filter: blur(5px);
+        .input-wrapper { position: relative; margin-bottom: 25px; }
+
+        .styled-input {
+            width: 100%;
+            height: 52px; /* Fixed height to control cursor */
+            padding: 0 15px 0 45px; /* Vertical padding 0, use line-height or flex */
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
             transition: 0.3s;
-        }
-        .search-input:focus { border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(14, 165, 233, 0.15); }
-
-        .search-icon { position: absolute; top: 16px; left: 16px; width: 20px; fill: var(--text-dim); }
-
-        /* Dropdown */
-        .suggestions {
-            position: absolute; top: 110%; left: 0; right: 0;
-            background: #0f172a; border: 1px solid var(--glass-border);
-            border-radius: 12px; z-index: 50; display: none;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-        }
-        .s-item { padding: 14px; border-bottom: 1px solid var(--glass-border); color: #ccc; }
-        .s-item:active { background: var(--neon-blue); color: #000; }
-
-        /* --- 4. Glass Tiles (Buttons) --- */
-        .grid-3 {
-            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 30px;
+            display: flex; align-items: center; /* Ensures text is centered */
         }
 
-        .glass-btn {
-            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 15px 5px;
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            transition: all 0.2s;
-            position: relative; overflow: hidden;
-        }
-
-        .glass-btn svg { width: 28px; height: 28px; fill: var(--text-dim); transition: 0.2s; }
-        .glass-btn span { font-size: 0.75rem; font-weight: 600; color: var(--text-dim); transition: 0.2s; }
-
-        .glass-btn.active {
+        .styled-input:focus {
             border-color: var(--neon-blue);
-            background: rgba(14, 165, 233, 0.1);
-            box-shadow: 0 0 20px rgba(14, 165, 233, 0.1);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
         }
-        .glass-btn.active svg { fill: var(--neon-blue); transform: scale(1.1); }
-        .glass-btn.active span { color: #fff; }
 
-        /* --- 5. Quantity Input (Reveals) --- */
-        #qty-area { display: none; margin-bottom: 25px; animation: slideDown 0.3s; }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .qty-box {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 15px;
-            display: flex; align-items: center; justify-content: space-between;
+        .input-icon {
+            position: absolute; top: 50%; left: 15px;
+            transform: translateY(-50%);
+            width: 18px; fill: var(--text-muted);
+            pointer-events: none;
         }
+
+        /* Suggestions Dropdown */
+        .dropdown {
+            position: absolute; top: 105%; left: 0; right: 0;
+            background: #121216; border: 1px solid var(--border-glass);
+            border-radius: 10px; z-index: 50; display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            max-height: 200px; overflow-y: auto;
+        }
+        .dd-item { padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; color: #ccc; cursor: pointer; }
+        .dd-item:hover, .dd-item:active { background: rgba(0, 243, 255, 0.1); color: var(--neon-blue); }
+
+        /* --- 4. BUTTONS (Cards) --- */
+        .cards-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 30px;
+        }
+
+        .option-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            padding: 15px 5px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-card svg { width: 24px; height: 24px; fill: var(--text-muted); transition: 0.2s; }
+        .option-card span { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+
+        .option-card.active {
+            border-color: var(--neon-blue);
+            background: rgba(0, 243, 255, 0.05);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+        }
+        .option-card.active svg { fill: var(--neon-blue); transform: scale(1.1); }
+        .option-card.active span { color: #fff; }
+
+        /* --- 5. QUANTITY SECTION (Fixed Spacing) --- */
+        #quantity-panel { display: none; animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         
-        .qty-field {
-            background: transparent; border: none; outline: none;
-            color: var(--neon-blue); font-size: 1.5rem; font-weight: 800;
-            width: 100%; text-align: center;
-        }
-        .qty-field::placeholder { color: #475569; font-size: 1.1rem; font-weight: normal; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- 6. Action Button --- */
-        .action-btn {
-            width: 100%; padding: 18px;
+        .qty-wrapper {
+            margin-bottom: 25px; /* Added spacing between input and button */
+        }
+
+        .qty-input {
+            width: 100%; height: 60px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.5rem; font-weight: 700; color: #fff;
+            outline: none; font-family: 'Rajdhani', sans-serif;
+        }
+        .qty-input:focus { border-color: var(--neon-blue); }
+
+        .submit-btn {
+            width: 100%; height: 50px;
             background: var(--neon-blue);
             color: #000;
-            border: none; border-radius: 12px;
-            font-size: 1rem; font-weight: 800; letter-spacing: 1px;
-            box-shadow: 0 5px 20px rgba(14, 165, 233, 0.3);
+            border: none; border-radius: 8px;
+            font-size: 0.95rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3);
             transition: transform 0.1s;
         }
-        .action-btn:active { transform: scale(0.98); }
+        .submit-btn:active { transform: scale(0.98); }
 
-        /* --- 7. History List (New Format) --- */
-        .history-section { margin-top: 40px; }
-        .h-header {
-            font-size: 0.85rem; color: var(--text-dim); 
-            border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; margin-bottom: 15px;
+        /* --- 6. HISTORY LIST --- */
+        .history-header {
+            font-size: 0.8rem; color: var(--text-muted); 
+            border-bottom: 1px solid var(--border-glass); 
+            padding-bottom: 8px; margin-bottom: 15px; margin-top: 40px;
+            display: flex; justify-content: space-between;
         }
 
-        .h-card {
+        .log-item {
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--glass-border);
-            padding: 15px; border-radius: 12px; margin-bottom: 10px;
+            background: rgba(255,255,255,0.02);
+            border-left: 2px solid var(--neon-blue);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 15px; margin-bottom: 10px;
         }
 
-        .h-left { display: flex; flex-direction: column; gap: 4px; }
-        .h-date { font-size: 0.75rem; color: var(--neon-blue); font-weight: 600; }
-        .h-company { font-size: 1rem; color: #fff; font-weight: 500; }
+        .log-left { display: flex; flex-direction: column; gap: 3px; }
+        .log-date { font-size: 0.7rem; color: var(--neon-blue); font-family: 'Rajdhani', sans-serif; }
+        .log-co { font-size: 0.95rem; color: #fff; font-weight: 500; }
 
-        .h-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
-        .h-val { font-size: 1.4rem; font-weight: 800; color: #fff; line-height: 1; }
-        .h-type { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+        .log-right { text-align: right; }
+        .log-val { font-size: 1.2rem; font-weight: 700; color: #fff; font-family: 'Rajdhani', sans-serif; line-height: 1; }
+        .log-type { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
 
     </style>
 </head>
 <body>
 
-    <div class="brand-header">
-        <div class="brand-title">MAA BHAVANI LIFTERS</div>
-    </div>
+    <nav class="navbar">
+        <div class="brand-logo">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            MAA BHAVANI LIFTERS
+        </div>
+    </nav>
 
-    <div class="info-bar">
-        <div class="profile-capsule">
-            <img src="https://i.pravatar.cc/150?img=11" alt="Driver" class="p-img">
-            <div>
-                <div class="p-name">Ramesh Bhai</div>
-                <div class="p-id">DRIVER #402</div>
+    <div class="container">
+        <div class="info-panel">
+            <div class="user-badge">
+                <img src="https://i.pravatar.cc/150?img=11" alt="Driver" class="user-img">
+                <div class="user-details">
+                    <h3>Ramesh Bhai</h3>
+                    <p>DRIVER ID: 402</p>
+                </div>
+            </div>
+            <div class="date-badge" id="dateDisplay">Today, 31/12/2025</div>
+        </div>
+
+        <label class="label">Select Client</label>
+        <div class="input-wrapper">
+            <svg class="search-icon input-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" id="companyInput" class="styled-input" placeholder="Search Company Name..." autocomplete="off">
+            <div id="suggestions" class="dropdown"></div>
+        </div>
+
+        <label class="label">Select Work Type</label>
+        <div class="cards-grid">
+            <div class="option-card" onclick="selectWork(this, 'Container')">
+                <svg viewBox="0 0 24 24"><path d="M4 15h16v-2H4v2zm0 4h16v-2H4v2zm0-8h16V9H4v2zm0-6v2h16V5H4z"/></svg>
+                <span>Container</span>
+            </div>
+            <div class="option-card" onclick="selectWork(this, 'Hour')">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                <span>Hour</span>
+            </div>
+            <div class="option-card" onclick="selectWork(this, 'Shift')">
+                <svg viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+                <span>Shift</span>
             </div>
         </div>
-        
-        <div class="date-box" onclick="toggleDateDemo()">
-            <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5v-5z"/></svg>
-            <span class="date-text" id="dateDisplay">Today, 31 Dec</span>
-        </div>
-    </div>
 
-    <div class="input-label">Select Client</div>
-    <div class="search-wrapper">
-        <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        <input type="text" id="coInput" class="search-input" placeholder="Search Company..." autocomplete="off">
-        <div id="suggestions" class="suggestions"></div>
-    </div>
-
-    <div class="input-label">Select Work Type</div>
-    <div class="grid-3">
-        <div class="glass-btn" onclick="selectType(this, 'Container')">
-            <svg viewBox="0 0 24 24"><path d="M4 15h16v-2H4v2zm0 4h16v-2H4v2zm0-8h16V9H4v2zm0-6v2h16V5H4z"/></svg>
-            <span>Container</span>
-        </div>
-        <div class="glass-btn" onclick="selectType(this, 'Hour')">
-            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            <span>Hour</span>
-        </div>
-        <div class="glass-btn" onclick="selectType(this, 'Shift')">
-            <svg viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
-            <span>Shift</span>
-        </div>
-    </div>
-
-    <div id="qty-area">
-        <div class="input-label">Enter Quantity</div>
-        <div class="qty-box">
-            <input type="number" id="qtyVal" class="qty-field" placeholder="0">
-        </div>
-        <button class="action-btn" onclick="submitEntry()">CONFIRM ENTRY</button>
-    </div>
-
-    <div class="history-section">
-        <div class="h-header">RECENT LOGS</div>
-        <div id="logList">
+        <div id="quantity-panel">
+            <label class="label" id="qtyLabel">Enter Value</label>
+            <div class="qty-wrapper">
+                <input type="number" id="qtyInput" class="qty-input" placeholder="0">
             </div>
+            <button class="submit-btn" onclick="submitData()">CONFIRM ENTRY</button>
+        </div>
+
+        <div class="history-header">
+            <span>RECENT ACTIVITY</span>
+            <span>LAST 2 DAYS</span>
+        </div>
+        <div id="historyList">
+            </div>
+
     </div>
 
     <script>
-        const companies = ["Simpolo Ceramics", "Sunheart Tiles", "Varmora", "Qutone", "Lioli", "Monalisa", "Other"];
-        const coInput = document.getElementById('coInput');
-        const sugg = document.getElementById('suggestions');
-        let currentType = null;
+        // --- DATA & SETUP ---
+        const companies = ["Simpolo Ceramics", "Sunheart Tiles", "Varmora Granito", "Qutone Ceramic", "Lioli Ceramica", "Monalisa Tiles", "Other"];
+        let selectedType = null;
         let isToday = true;
 
-        // 1. Date Toggle Demo
-        function toggleDateDemo() {
-            isToday = !isToday;
-            document.getElementById('dateDisplay').innerText = isToday ? "Today, 31 Dec" : "Yesterday, 30 Dec";
+        // Date Logic (Dynamic)
+        const dateEl = document.getElementById('dateDisplay');
+        
+        function updateDate() {
+            // Hardcoded Logic for Demo switching
+            if(isToday) {
+                dateEl.innerText = "Today, 31/12/2025";
+            } else {
+                dateEl.innerText = "Yesterday, 30/12/2025";
+            }
         }
-
-        // 2. Search Logic
-        coInput.addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            sugg.innerHTML = '';
-            if(!val) { sugg.style.display='none'; return; }
-            const m = companies.filter(c => c.toLowerCase().includes(val));
-            if(m.length) {
-                sugg.style.display='block';
-                m.forEach(i => {
-                    const d = document.createElement('div');
-                    d.className = 's-item';
-                    d.innerText = i;
-                    d.onclick = () => { coInput.value = i; sugg.style.display='none'; };
-                    sugg.appendChild(d);
-                });
-            } else sugg.style.display='none';
+        
+        // Toggle date on click (for Demo)
+        dateEl.addEventListener('click', () => {
+            isToday = !isToday;
+            updateDate();
         });
 
-        document.onclick = (e) => { if(!e.target.closest('.search-wrapper')) sugg.style.display='none'; }
+        // --- SEARCH LOGIC ---
+        const coIn = document.getElementById('companyInput');
+        const list = document.getElementById('suggestions');
 
-        // 3. Type Select
-        function selectType(el, type) {
-            document.querySelectorAll('.glass-btn').forEach(b => b.classList.remove('active'));
+        coIn.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            list.innerHTML = '';
+            
+            if(!val) { list.style.display='none'; return; }
+            
+            const match = companies.filter(c => c.toLowerCase().includes(val));
+            if(match.length) {
+                list.style.display = 'block';
+                match.forEach(m => {
+                    const d = document.createElement('div');
+                    d.className = 'dd-item';
+                    d.innerText = m;
+                    d.onclick = () => { coIn.value = m; list.style.display = 'none'; };
+                    list.appendChild(d);
+                });
+            } else list.style.display = 'none';
+        });
+
+        // Hide dropdown on outside click
+        document.addEventListener('click', (e) => {
+            if(!e.target.closest('.input-wrapper')) list.style.display = 'none';
+        });
+
+        // --- SELECTION LOGIC ---
+        function selectWork(el, type) {
+            // Reset UI
+            document.querySelectorAll('.option-card').forEach(c => c.classList.remove('active'));
             el.classList.add('active');
-            currentType = type;
+            selectedType = type;
+
+            // Show Qty Panel
+            const panel = document.getElementById('quantity-panel');
+            panel.style.display = 'block';
             
-            const area = document.getElementById('qty-area');
-            area.style.display = 'block';
-            
-            const field = document.getElementById('qtyVal');
-            field.placeholder = type === 'Container' ? 'How many Containers?' : (type === 'Hour' ? 'Total Hours?' : 'No. of Shifts?');
-            field.value = '';
-            field.focus();
+            // Focus Input
+            const inp = document.getElementById('qtyInput');
+            inp.value = '';
+            inp.focus();
+
+            // Update Label Placeholder
+            if(type === 'Container') inp.placeholder = "No. of Containers";
+            if(type === 'Hour') inp.placeholder = "Total Hours";
+            if(type === 'Shift') inp.placeholder = "Shift Count";
         }
 
-        // 4. Submit
-        function submitEntry() {
-            const co = coInput.value;
-            const val = document.getElementById('qtyVal').value;
-            
-            if(!co || !currentType || !val) { alert("Please fill all details"); return; }
-            
-            const btn = document.querySelector('.action-btn');
-            const originalText = btn.innerText;
+        // --- SUBMIT LOGIC ---
+        function submitData() {
+            const btn = document.querySelector('.submit-btn');
+            const co = coIn.value;
+            const val = document.getElementById('qtyInput').value;
+
+            if(!co || !selectedType || !val) {
+                alert("Please fill all fields properly.");
+                return;
+            }
+
+            // Button Animation
             btn.innerText = "SUCCESS ✓";
-            btn.style.background = "#10b981"; // Green
+            btn.style.background = "var(--success-green)";
+            btn.style.color = "#000";
+
+            // Add to List
+            const history = document.getElementById('historyList');
+            const dateStr = dateEl.innerText.split(',')[0]; // "Today" or "Yesterday"
             
-            // Add to History
-            const list = document.getElementById('logList');
-            const dateStr = document.getElementById('dateDisplay').innerText.split(',')[0]; // "Today" or "Yesterday"
-            
-            const html = `
-            <div class="h-card" style="animation: slideDown 0.3s">
-                <div class="h-left">
-                    <div class="h-date">${dateStr}</div>
-                    <div class="h-company">${co}</div>
+            const item = `
+            <div class="log-item" style="animation: slideUp 0.3s">
+                <div class="log-left">
+                    <div class="log-date">${dateStr}</div>
+                    <div class="log-co">${co}</div>
                 </div>
-                <div class="h-right">
-                    <div class="h-val">${val}</div>
-                    <div class="h-type">${currentType}</div>
+                <div class="log-right">
+                    <div class="log-val">${val}</div>
+                    <div class="log-type">${selectedType}</div>
                 </div>
             </div>`;
             
-            list.insertAdjacentHTML('afterbegin', html);
+            history.insertAdjacentHTML('afterbegin', item);
 
+            // Reset Form
             setTimeout(() => {
-                btn.innerText = originalText;
+                btn.innerText = "CONFIRM ENTRY";
                 btn.style.background = "var(--neon-blue)";
-                document.getElementById('qty-area').style.display = 'none';
-                coInput.value = '';
-                document.querySelectorAll('.glass-btn').forEach(b => b.classList.remove('active'));
+                btn.style.color = "#000";
+                
+                document.getElementById('quantity-panel').style.display = 'none';
+                coIn.value = '';
+                document.querySelectorAll('.option-card').forEach(c => c.classList.remove('active'));
             }, 1500);
         }
     </script>
