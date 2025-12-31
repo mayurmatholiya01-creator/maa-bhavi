@@ -113,12 +113,25 @@
         }
         .qty-input:focus { border-color: var(--accent-blue); }
 
-        .confirm-btn {
-            width: 100%; padding: 15px; background: var(--text-main); color: #000;
-            border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 800;
-            letter-spacing: 1px; transition: transform 0.1s;
-        }
-        .confirm-btn:active { transform: scale(0.97); }
+/* Purana wala hata kar ye paste karein */
+.confirm-btn {
+    width: 100%; 
+    padding: 15px; 
+    background: var(--accent-blue); /* White hata kar Blue kar diya */
+    color: #ffffff; /* Text ko Black se White kar diya */
+    border: none; 
+    border-radius: 10px;
+    font-size: 0.95rem; 
+    font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); /* Blue glow add kiya */
+    transition: transform 0.1s;
+    cursor: pointer;
+}
+
+.confirm-btn:active { 
+    transform: scale(0.97); 
+}
 
         /* HISTORY */
         .history-head {
