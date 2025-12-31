@@ -34,12 +34,12 @@
             overflow-x: hidden;
         }
 
-        /* HEADER UPDATED FOR ICON */
+        /* HEADER UPDATED */
         .header {
             text-align: center; margin-bottom: 20px; padding-bottom: 15px;
             border-bottom: 1px solid var(--border-subtle);
             
-            /* New Flexbox Layout for Icon + Text */
+            /* Icon + Text Layout */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -49,7 +49,10 @@
             width: 38px;
             height: 38px;
             object-fit: contain;
-            display: none; /* Initially hidden until JS loads it */
+            display: none; /* JS isse show karega jab load hoga */
+            
+            /* YE LINE ICON KO FLIP KAREGI (Seedha karegi) */
+            transform: scaleX(-1); 
         }
         .brand-name {
             font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700;
@@ -148,11 +151,14 @@
             height: 50px; display: flex; flex-direction: row; align-items: center; justify-content: center;
             gap: 6px; cursor: pointer; transition: all 0.2s; will-change: transform;
         }
-        /* Buttons kept as SVG for now to avoid breaking */
-        .tile-btn svg { width: 18px; height: 18px; fill: var(--text-dim); }
+        
+        /* Updated SVG Styling for Dynamic Colors */
+        .tile-btn svg { width: 22px; height: 22px; fill: var(--text-dim); transition: fill 0.2s; }
         .tile-btn span { font-size: 0.7rem; font-weight: 600; color: var(--text-dim); }
+        
+        /* Active State */
         .tile-btn.active { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.15); }
-        .tile-btn.active svg { fill: var(--accent-blue); }
+        .tile-btn.active svg { fill: var(--accent-blue); } /* Isse Icon Blue hoga */
         .tile-btn.active span { color: #fff; }
 
         /* QUANTITY */
@@ -283,14 +289,22 @@
 
     <span class="label">Work Type</span>
     <div class="btn-grid section-gap">
+        
         <div class="tile-btn" onclick="setType(this, 'Container')">
-            <svg viewBox="0 0 24 24"><path d="M4 15h16v-2H4v2zm0 4h16v-2H4v2zm0-8h16V9H4v2zm0-6v2h16V5H4z"/></svg>
+            <svg viewBox="0 0 256 256" style="fill: currentColor;">
+                <path d="M224,56H32A16,16,0,0,0,16,72V184a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V72A16,16,0,0,0,224,56Zm0,128H32V72H224V184Z"></path>
+                <path d="M72,88h16v80H72Z"></path>
+                <path d="M120,88h16v80H120Z"></path>
+                <path d="M168,88h16v80H168Z"></path>
+            </svg>
             <span>Container</span>
         </div>
+        
         <div class="tile-btn" onclick="setType(this, 'Hour')">
             <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
             <span>Hour</span>
         </div>
+        
         <div class="tile-btn" onclick="setType(this, 'Shift')">
             <svg viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
             <span>Shift</span>
