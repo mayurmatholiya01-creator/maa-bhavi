@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Maa Bhavani Lifters</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
@@ -12,7 +11,7 @@
     <style>
         :root {
             --bg-body: #050505;
-            --card-bg: rgba(25, 25, 25, 0.95); /* Thoda solid kiya performance ke liye */
+            --card-bg: rgba(25, 25, 25, 0.95);
             --border-subtle: rgba(255, 255, 255, 0.1);
             --accent-blue: #3b82f6;
             --accent-silver: #e2e8f0;
@@ -24,13 +23,12 @@
 
         body {
             background-color: var(--bg-body);
-            /* Hardware Accelerated Gradient */
             background-image: radial-gradient(circle at 50% 0%, #111827 0%, #000000 60%);
             font-family: 'Manrope', sans-serif;
             color: var(--text-main);
             min-height: 100vh;
             padding: 15px;
-            overflow-x: hidden; /* No side scroll */
+            overflow-x: hidden;
         }
 
         /* HEADER */
@@ -54,25 +52,42 @@
             background: var(--card-bg); padding: 5px 12px 5px 5px;
             border-radius: 50px; border: 1px solid var(--border-subtle);
         }
-        /* SVG Avatar Container */
         .p-img-box { 
             width: 32px; height: 32px; border-radius: 50%; 
             border: 2px solid var(--accent-blue);
             background: #1e293b; display: flex; align-items: center; justify-content: center;
         }
         .p-img-box svg { width: 18px; fill: #fff; }
-        
         .p-name { font-size: 0.8rem; font-weight: 700; color: #fff; }
         
+        /* NEW DATE PILL DESIGN (Interactable) */
         .date-pill {
             background: linear-gradient(145deg, #1e1e1e, #111);
-            border: 1px solid var(--border-subtle); padding: 8px 14px;
-            border-radius: 8px; font-family: 'Rajdhani', sans-serif;
+            border: 1px solid var(--border-subtle); 
+            padding: 5px 14px 5px 5px; /* Padding for button look */
+            border-radius: 30px; /* Pill shape */
+            display: flex; align-items: center; gap: 8px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .date-pill:active { border-color: var(--accent-blue); background: #222; }
+
+        /* The Round Toggle Icon */
+        .date-icon-circle {
+            width: 28px; height: 28px; 
+            background: rgba(59, 130, 246, 0.15); /* Low Blue */
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .date-icon-circle svg { width: 14px; fill: var(--accent-blue); }
+
+        .date-text {
+            font-family: 'Rajdhani', sans-serif;
             font-weight: 600; font-size: 0.85rem; color: var(--accent-silver);
-            min-width: 120px; text-align: center;
+            padding-right: 5px;
         }
 
-        /* LABELS & SPACING */
+        /* SHARED STYLES */
         .label {
             font-size: 0.7rem; color: var(--accent-blue); font-weight: 700;
             text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block;
@@ -86,7 +101,7 @@
             border: 1px solid var(--border-subtle); border-radius: 10px;
             padding: 0 20px 0 45px; color: #fff; font-size: 0.95rem;
             outline: none; transition: border-color 0.2s;
-            -webkit-appearance: none; /* iOS Fix */
+            -webkit-appearance: none;
         }
         .search-box:focus { border-color: var(--accent-blue); }
         .search-icon {
@@ -109,12 +124,10 @@
             border: 1px solid var(--border-subtle); border-radius: 10px;
             height: 50px; display: flex; flex-direction: row; align-items: center; justify-content: center;
             gap: 6px; cursor: pointer; transition: all 0.2s;
-            /* Performance Boost */
-            will-change: transform; 
+            will-change: transform;
         }
         .tile-btn svg { width: 18px; height: 18px; fill: var(--text-dim); }
         .tile-btn span { font-size: 0.7rem; font-weight: 600; color: var(--text-dim); }
-        
         .tile-btn.active { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.15); }
         .tile-btn.active svg { fill: var(--accent-blue); }
         .tile-btn.active span { color: #fff; }
@@ -130,7 +143,6 @@
         }
         .qty-input:focus { border-color: var(--accent-blue); }
 
-        /* CONFIRM BUTTON (STEALTH) */
         .confirm-btn {
             width: 100%; padding: 16px;
             background: linear-gradient(180deg, #2d3748 0%, #1a202c 100%);
@@ -163,8 +175,17 @@
         }
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
+        .l-left { display: flex; flex-direction: column; gap: 2px; }
         .l-date { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; color: var(--accent-blue); }
         .l-co { font-size: 0.9rem; font-weight: 600; color: #eee; }
+        
+        /* ALIGNMENT FIX FOR VALUE & TYPE */
+        .l-right { 
+            display: flex; flex-direction: column; 
+            align-items: center; /* Center horizontally relative to each other */
+            justify-content: center;
+            min-width: 50px; /* Ensure space */
+        }
         .l-val { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1; }
         .l-type { font-size: 0.6rem; text-transform: uppercase; color: var(--text-dim); margin-top: 2px; }
 
@@ -183,7 +204,13 @@
             </div>
             <div class="p-name">Ramesh B.</div>
         </div>
-        <div class="date-pill" id="date-display">Today, 31/12/2025</div>
+        
+        <div class="date-pill" id="date-toggle-btn">
+            <div class="date-icon-circle">
+                <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+            </div>
+            <span class="date-text" id="date-display">Today, 31/12/2025</span>
+        </div>
     </div>
 
     <span class="label">Select Client</span>
@@ -228,8 +255,17 @@
         let selType = null;
         let isToday = true;
 
+        const dateBtn = document.getElementById('date-toggle-btn');
         const dEl = document.getElementById('date-display');
-        dEl.onclick = () => { isToday = !isToday; dEl.innerText = isToday ? "Today, 31/12/2025" : "Yesterday, 30/12/2025"; }
+        
+        dateBtn.onclick = () => { 
+            isToday = !isToday; 
+            dEl.innerText = isToday ? "Today, 31/12/2025" : "Yesterday, 30/12/2025"; 
+            
+            // Visual feedback on click
+            dateBtn.style.borderColor = "var(--accent-blue)";
+            setTimeout(() => dateBtn.style.borderColor = "var(--border-subtle)", 200);
+        }
 
         coIn.addEventListener('input', (e) => {
             const v = e.target.value.toLowerCase();
@@ -282,9 +318,7 @@
             
             setTimeout(() => {
                 btn.innerText = oldTxt;
-                // RESET TO DARK STEALTH THEME
-                btn.style.background = ""; 
-                btn.style.color = "";
+                btn.style.background = ""; btn.style.color = "";
                 
                 coIn.value = '';
                 document.getElementById('qty-in').value = '';
