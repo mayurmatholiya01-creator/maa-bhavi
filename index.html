@@ -113,30 +113,32 @@
         }
         .qty-input:focus { border-color: var(--accent-blue); }
 
-.confirm-btn {
-    width: 100%;
-    padding: 16px;
-    /* Dark Metallic Gradient */
-    background: linear-gradient(180deg, #2d3748 0%, #1a202c 100%);
-    color: #94a3b8; /* Silver Grey Text */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 2px solid rgba(0, 0, 0, 0.3); /* Tactile 3D feel */
-    border-radius: 10px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
+        /* STEALTH BUTTON STYLE */
+        .confirm-btn {
+            width: 100%;
+            padding: 16px;
+            /* Dark Metallic Gradient */
+            background: linear-gradient(180deg, #2d3748 0%, #1a202c 100%);
+            color: #94a3b8; /* Silver Grey Text */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.3); /* Tactile 3D feel */
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
 
-.confirm-btn:active {
-    transform: scale(0.98);
-    background: #000;
-    border-color: var(--accent-blue);
-    color: #fff;
-}
+        .confirm-btn:active {
+            transform: scale(0.98);
+            background: #000;
+            border-color: var(--accent-blue);
+            color: #fff;
+        }
+
         /* HISTORY */
         .history-head {
             display: flex; justify-content: space-between;
@@ -267,22 +269,19 @@
             </div>`;
             list.insertAdjacentHTML('afterbegin', row);
             
-/* Ye wala hissa replace karein */
-setTimeout(() => {
-    btn.innerText = "CONFIRM ENTRY"; // Wapas text aa jayega
-    
-    // IMPORTANT: Yahan se hum color hata rahe hain taaki wapas CSS wala Dark color aa jaye
-    btn.style.background = ""; 
-    btn.style.color = "";
-    
-    // Baaki reset logic same rahega
-    document.getElementById('qty-area').style.display = 'none';
-    coIn.value = '';
-    document.getElementById('qty-in').value = '';
-    document.querySelectorAll('.tile-btn').forEach(b => b.classList.remove('active'));
-    selType = null;
-    document.getElementById('qty-in').placeholder = "Enter Quantity";
-}, 1500);
+            setTimeout(() => {
+                btn.innerText = "CONFIRM ENTRY";
+                
+                // IMPORTANT: Reset color to CSS default (Dark Matte)
+                btn.style.background = ""; 
+                btn.style.color = "";
+                
+                coIn.value = '';
+                document.getElementById('qty-in').value = '';
+                document.querySelectorAll('.tile-btn').forEach(b => b.classList.remove('active'));
+                selType = null;
+                document.getElementById('qty-in').placeholder = "Enter Quantity";
+            }, 1500);
         }
     </script>
 </body>
