@@ -8,12 +8,11 @@
     
     <style>
         :root {
-            /* TITANIUM PALETTE */
+            /* TITANIUM PALETTE (Same Premium Look) */
             --bg-body: #050505;
-            --card-bg: rgba(20, 20, 20, 0.7);
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-highlight: rgba(255, 255, 255, 0.2);
-            --accent-blue: #3b82f6; /* Premium Tech Blue */
+            --card-bg: rgba(25, 25, 25, 0.8);
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --accent-blue: #3b82f6;
             --accent-silver: #e2e8f0;
             --text-main: #ffffff;
             --text-dim: #64748b;
@@ -23,210 +22,199 @@
 
         body {
             background-color: var(--bg-body);
-            /* Subtle Mesh Gradient - Very Dark */
-            background-image: radial-gradient(circle at 50% 0%, #111827 0%, #000000 70%);
+            background-image: radial-gradient(circle at 50% 0%, #111827 0%, #000000 60%);
             font-family: 'Manrope', sans-serif;
             color: var(--text-main);
             min-height: 100vh;
-            padding: 20px;
+            /* Tighter padding */
+            padding: 15px;
         }
 
-        /* --- 1. HEADER (Metal Finish) --- */
+        /* --- 1. HEADER (Icon Removed, Compact) --- */
         .header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            /* Reduced margins */
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 1px solid var(--border-subtle);
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
         }
-
-        .brand-icon svg { width: 36px; height: 36px; fill: var(--text-main); filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
 
         .brand-name {
             font-family: 'Rajdhani', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.3rem; /* Slightly smaller font */
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             background: linear-gradient(to bottom, #fff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* --- 2. INFO BAR (Profile & Date) --- */
+        /* --- 2. INFO BAR (Tighter) --- */
         .info-bar {
             display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 35px;
+            margin-bottom: 25px; /* Reduced margin */
         }
 
         .profile {
-            display: flex; align-items: center; gap: 12px;
+            display: flex; align-items: center; gap: 10px;
             background: var(--card-bg);
-            padding: 6px 15px 6px 6px;
+            padding: 5px 12px 5px 5px;
             border-radius: 50px;
             border: 1px solid var(--border-subtle);
         }
         
-        .p-img { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--accent-blue); }
-        .p-name { font-size: 0.85rem; font-weight: 700; color: #fff; }
+        .p-img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--accent-blue); }
+        .p-name { font-size: 0.8rem; font-weight: 700; color: #fff; }
 
-        /* The DATE PILL (Wide & Clean) */
         .date-pill {
             background: linear-gradient(145deg, #1e1e1e, #111);
             border: 1px solid var(--border-subtle);
-            padding: 10px 18px;
+            padding: 8px 14px; /* Reduced padding */
             border-radius: 8px;
             font-family: 'Rajdhani', sans-serif;
-            font-weight: 600; font-size: 0.95rem;
+            font-weight: 600; font-size: 0.85rem;
             color: var(--accent-silver);
-            letter-spacing: 1px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            letter-spacing: 0.5px;
         }
 
-        /* --- 3. INPUT (Matte Black) --- */
+        /* --- 3. COMPONENTS & SPACING --- */
         .label {
-            font-size: 0.75rem; color: var(--accent-blue); font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block;
+            font-size: 0.7rem; color: var(--accent-blue); font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; 
+            margin-bottom: 8px; /* Tighter gap */
+            display: block;
         }
 
-        .search-container { position: relative; margin-bottom: 35px; }
+        .section-gap { margin-bottom: 25px; } /* Standard reduced gap */
 
+        /* Search Box (Shatter height) */
+        .search-container { position: relative; }
         .search-box {
-            width: 100%; height: 56px;
-            background: #0f0f0f; /* Matte Black */
+            width: 100%; height: 48px; /* Reduced height */
+            background: #0f0f0f;
             border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 0 20px 0 50px;
-            color: #fff; font-size: 1rem;
+            border-radius: 10px;
+            padding: 0 20px 0 45px;
+            color: #fff; font-size: 0.95rem;
             font-family: 'Manrope', sans-serif;
             outline: none; transition: 0.3s;
         }
-
-        .search-box:focus {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-        }
-
+        .search-box:focus { border-color: var(--accent-blue); }
         .search-icon {
-            position: absolute; top: 50%; left: 18px; transform: translateY(-50%);
-            width: 20px; fill: var(--text-dim); pointer-events: none;
+            position: absolute; top: 50%; left: 15px; transform: translateY(-50%);
+            width: 18px; fill: var(--text-dim); pointer-events: none;
         }
 
+        /* Dropdown Tighter */
         .dropdown {
-            position: absolute; top: 110%; left: 0; right: 0;
+            position: absolute; top: 105%; left: 0; right: 0;
             background: #111; border: 1px solid var(--border-subtle);
-            border-radius: 12px; z-index: 50; display: none;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+            border-radius: 10px; z-index: 50; display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+            max-height: 180px; overflow-y: auto;
         }
-        .dd-item { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc; font-size: 0.9rem; }
-        .dd-item:active { background: var(--accent-blue); color: #fff; }
+        .dd-item { padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc; font-size: 0.85rem; }
 
-        /* --- 4. BUTTONS (Titanium Finish) --- */
+        /* --- 4. NEW COMPACT BUTTONS (Horizontal Capsules) --- */
         .btn-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 35px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
         }
 
         .tile-btn {
             background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
             border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            height: 90px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 8px;
+            border-radius: 10px;
+            height: 50px; /* Much shorter */
+            display: flex; flex-direction: row; /* Side by side */
+            align-items: center; justify-content: center;
+            gap: 8px; /* Space between icon/text */
             cursor: pointer; transition: all 0.2s;
         }
 
-        .tile-btn svg { width: 26px; height: 26px; fill: var(--text-dim); transition: 0.2s; }
+        .tile-btn svg { width: 20px; height: 20px; fill: var(--text-dim); transition: 0.2s; }
         .tile-btn span { font-size: 0.75rem; font-weight: 600; color: var(--text-dim); transition: 0.2s; }
 
         .tile-btn.active {
             border-color: var(--accent-blue);
-            background: rgba(59, 130, 246, 0.08);
+            background: rgba(59, 130, 246, 0.15);
         }
-        .tile-btn.active svg { fill: var(--accent-blue); transform: scale(1.1); }
+        .tile-btn.active svg { fill: var(--accent-blue); }
         .tile-btn.active span { color: #fff; }
 
-        /* --- 5. QUANTITY & SUBMIT --- */
-        #qty-area { display: none; animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* --- 5. COMPACT QUANTITY SECTION --- */
+        #qty-area { display: none; animation: slideUp 0.2s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Fixed Spacing */
-        .input-spacer { margin-bottom: 25px; }
+        .input-spacer { margin-bottom: 15px; } /* Tighter gap */
 
         .qty-input {
-            width: 100%; height: 65px;
+            width: 100%; height: 55px; /* Reduced height */
             background: transparent;
             border: 2px solid var(--border-subtle);
-            border-radius: 12px;
+            border-radius: 10px;
             color: #fff; text-align: center;
             font-family: 'Rajdhani', sans-serif;
-            font-size: 2rem; font-weight: 700;
+            font-size: 1.6rem; font-weight: 700;
             outline: none;
         }
         .qty-input:focus { border-color: var(--accent-blue); }
 
         .confirm-btn {
-            width: 100%; padding: 18px;
-            background: var(--text-main); /* White Button */
-            color: #000; /* Black Text */
-            border: none; border-radius: 12px;
-            font-size: 1rem; font-weight: 800; letter-spacing: 1px;
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+            width: 100%; padding: 15px; /* Reduced padding */
+            background: var(--text-main); color: #000;
+            border: none; border-radius: 10px;
+            font-size: 0.95rem; font-weight: 800; letter-spacing: 1px;
             transition: transform 0.1s;
         }
         .confirm-btn:active { transform: scale(0.97); }
 
-        /* --- 6. HISTORY LOG (Data Table Look) --- */
+        /* --- 6. COMPACT HISTORY --- */
         .history-head {
             display: flex; justify-content: space-between;
             border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 10px; margin-bottom: 15px; margin-top: 40px;
-            color: var(--text-dim); font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
+            padding-bottom: 8px; margin-bottom: 12px; margin-top: 30px; /* Reduced margin top */
+            color: var(--text-dim); font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
         }
 
         .log-row {
             display: flex; justify-content: space-between; align-items: center;
             background: linear-gradient(90deg, rgba(255,255,255,0.03), transparent);
-            padding: 14px; border-radius: 8px; margin-bottom: 8px;
+            padding: 10px 12px; /* Tighter padding */
+            border-radius: 8px; margin-bottom: 6px;
             border-left: 2px solid var(--border-subtle);
         }
-
-        .l-left { display: flex; flex-direction: column; gap: 4px; }
-        .l-date { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; color: var(--accent-blue); }
-        .l-co { font-size: 0.95rem; font-weight: 600; color: #eee; }
-
-        .l-right { text-align: right; }
-        .l-val { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: #fff; line-height: 1; }
-        .l-type { font-size: 0.65rem; text-transform: uppercase; color: var(--text-dim); margin-top: 3px; }
+        /* Content fonts slightly smaller */
+        .l-date { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; color: var(--accent-blue); }
+        .l-co { font-size: 0.9rem; font-weight: 600; color: #eee; }
+        .l-val { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1; }
+        .l-type { font-size: 0.6rem; text-transform: uppercase; color: var(--text-dim); margin-top: 2px; }
 
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="brand-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-        </div>
         <div class="brand-name">MAA BHAVANI LIFTERS</div>
     </div>
 
     <div class="info-bar">
         <div class="profile">
             <img src="https://i.pravatar.cc/150?img=11" class="p-img">
-            <div class="p-name">Ramesh Bhai</div>
+            <div class="p-name">Ramesh B.</div>
         </div>
         <div class="date-pill" id="date-display">Today, 31/12/2025</div>
     </div>
 
     <span class="label">Select Client</span>
-    <div class="search-container">
+    <div class="search-container section-gap">
         <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         <input type="text" id="co-in" class="search-box" placeholder="Search Company..." autocomplete="off">
         <div id="dd" class="dropdown"></div>
     </div>
 
     <span class="label">Work Type</span>
-    <div class="btn-grid">
+    <div class="btn-grid section-gap">
         <div class="tile-btn" onclick="setType(this, 'Container')">
             <svg viewBox="0 0 24 24"><path d="M4 15h16v-2H4v2zm0 4h16v-2H4v2zm0-8h16V9H4v2zm0-6v2h16V5H4z"/></svg>
             <span>Container</span>
@@ -257,21 +245,16 @@
         </div>
 
     <script>
-        // CONFIG
+        // --- SAME JS LOGIC AS BEFORE ---
         const companies = ["Simpolo Ceramics", "Sunheart Tiles", "Varmora Granito", "Qutone Ceramic", "Lioli Ceramica", "Monalisa Tiles", "Other"];
         const coIn = document.getElementById('co-in');
         const dd = document.getElementById('dd');
         let selType = null;
         let isToday = true;
 
-        // 1. DATE TOGGLE (Demo)
         const dEl = document.getElementById('date-display');
-        dEl.onclick = () => {
-            isToday = !isToday;
-            dEl.innerText = isToday ? "Today, 31/12/2025" : "Yesterday, 30/12/2025";
-        }
+        dEl.onclick = () => { isToday = !isToday; dEl.innerText = isToday ? "Today, 31/12/2025" : "Yesterday, 30/12/2025"; }
 
-        // 2. SEARCH
         coIn.addEventListener('input', (e) => {
             const v = e.target.value.toLowerCase();
             dd.innerHTML = '';
@@ -280,9 +263,7 @@
             if(m.length) {
                 dd.style.display='block';
                 m.forEach(i => {
-                    const d = document.createElement('div');
-                    d.className = 'dd-item';
-                    d.innerText = i;
+                    const d = document.createElement('div'); d.className = 'dd-item'; d.innerText = i;
                     d.onclick = () => { coIn.value = i; dd.style.display='none'; };
                     dd.appendChild(d);
                 });
@@ -290,62 +271,33 @@
         });
         document.onclick = (e) => { if(!e.target.closest('.search-container')) dd.style.display='none'; }
 
-        // 3. SELECT TYPE
         function setType(el, type) {
             document.querySelectorAll('.tile-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
             selType = type;
-
-            const area = document.getElementById('qty-area');
-            area.style.display = 'block';
-            
-            const inp = document.getElementById('qty-in');
-            inp.value = '';
-            inp.focus();
-            
-            // Dynamic Placeholders
+            const area = document.getElementById('qty-area'); area.style.display = 'block';
+            const inp = document.getElementById('qty-in'); inp.value = ''; inp.focus();
             if(type === 'Container') inp.placeholder = "No. of Containers";
             if(type === 'Hour') inp.placeholder = "Total Hours";
             if(type === 'Shift') inp.placeholder = "Shift Count";
         }
 
-        // 4. SUBMIT
         function submit() {
-            const co = coIn.value;
-            const val = document.getElementById('qty-in').value;
-
+            const co = coIn.value; const val = document.getElementById('qty-in').value;
             if(!co || !selType || !val) { alert("Please complete details"); return; }
-
             const btn = document.querySelector('.confirm-btn');
-            const oldTxt = btn.innerText;
-            btn.innerText = "SUCCESS ✓";
-            btn.style.background = "#22c55e"; // Success Green
-            btn.style.color = "#fff";
-
-            // Add to History
+            const oldTxt = btn.innerText; btn.innerText = "SUCCESS ✓"; btn.style.background = "#22c55e"; btn.style.color = "#fff";
             const list = document.getElementById('log-list');
-            const dStr = dEl.innerText.split(', ')[1]; // 31/12/2025
-            
+            const dStr = dEl.innerText.split(', ')[1];
             const row = `
             <div class="log-row" style="animation: slideUp 0.3s">
-                <div class="l-left">
-                    <div class="l-date">${dStr}</div>
-                    <div class="l-co">${co}</div>
-                </div>
-                <div class="l-right">
-                    <div class="l-val">${val}</div>
-                    <div class="l-type">${selType}</div>
-                </div>
+                <div class="l-left"><div class="l-date">${dStr}</div><div class="l-co">${co}</div></div>
+                <div class="l-right"><div class="l-val">${val}</div><div class="l-type">${selType}</div></div>
             </div>`;
-            
             list.insertAdjacentHTML('afterbegin', row);
-
             setTimeout(() => {
-                btn.innerText = oldTxt;
-                btn.style.background = "#ffffff";
-                btn.style.color = "#000";
-                document.getElementById('qty-area').style.display = 'none';
-                coIn.value = '';
+                btn.innerText = oldTxt; btn.style.background = "#ffffff"; btn.style.color = "#000";
+                document.getElementById('qty-area').style.display = 'none'; coIn.value = '';
                 document.querySelectorAll('.tile-btn').forEach(b => b.classList.remove('active'));
             }, 1500);
         }
