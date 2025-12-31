@@ -34,10 +34,22 @@
             overflow-x: hidden;
         }
 
-        /* HEADER */
+        /* HEADER UPDATED FOR ICON */
         .header {
             text-align: center; margin-bottom: 20px; padding-bottom: 15px;
             border-bottom: 1px solid var(--border-subtle);
+            
+            /* New Flexbox Layout for Icon + Text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .header-icon {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            display: none; /* Initially hidden until JS loads it */
         }
         .brand-name {
             font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700;
@@ -89,12 +101,11 @@
         }
         .section-gap { margin-bottom: 20px; }
 
-        /* SEARCH BOX & ONE-TAP CLEAR */
+        /* SEARCH BOX */
         .search-container { position: relative; }
         .search-box {
             width: 100%; height: 48px; background: #0f0f0f;
             border: 1px solid var(--border-subtle); border-radius: 10px;
-            /* Right padding badhaya taaki text X icon ke neeche na jaye */
             padding: 0 40px 0 45px; 
             color: #fff; font-size: 0.95rem;
             outline: none; transition: border-color 0.2s; -webkit-appearance: none;
@@ -105,18 +116,16 @@
             width: 18px; fill: var(--text-dim); pointer-events: none;
         }
         
-        /* NEW CLEAR ICON STYLE */
         .clear-icon {
             position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
             width: 24px; height: 24px;
-            display: none; /* Initially Hidden */
+            display: none; 
             align-items: center; justify-content: center;
             cursor: pointer; z-index: 10;
         }
         .clear-icon svg { width: 16px; fill: var(--text-dim); transition: fill 0.2s; }
         .clear-icon:active svg { fill: #fff; }
 
-        /* DROPDOWN - SCROLL FIX */
         .dropdown {
             position: absolute; top: 105%; left: 0; right: 0;
             background: #111; border: 1px solid var(--border-subtle);
@@ -124,11 +133,10 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.9); 
             max-height: 180px; 
             overflow-y: auto;
-            scroll-behavior: smooth; /* Smooth Scroll */
-            scrollbar-width: none; /* Firefox Hidden Scroll */
+            scroll-behavior: smooth; 
+            scrollbar-width: none; 
         }
-        .dropdown::-webkit-scrollbar { display: none; /* Chrome/Safari Hidden Scroll */ }
-        
+        .dropdown::-webkit-scrollbar { display: none; }
         .dd-item { padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc; font-size: 0.85rem; }
         .dd-item:active { background: #1e293b; color: var(--accent-blue); }
 
@@ -140,6 +148,7 @@
             height: 50px; display: flex; flex-direction: row; align-items: center; justify-content: center;
             gap: 6px; cursor: pointer; transition: all 0.2s; will-change: transform;
         }
+        /* Buttons kept as SVG for now to avoid breaking */
         .tile-btn svg { width: 18px; height: 18px; fill: var(--text-dim); }
         .tile-btn span { font-size: 0.7rem; font-weight: 600; color: var(--text-dim); }
         .tile-btn.active { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.15); }
@@ -218,26 +227,13 @@
         }
         .delete-slide-btn svg { width: 20px; fill: #fff; }
 
-        .l-left { 
-            display: flex; flex-direction: column; gap: 2px; 
-            flex: 1; min-width: 0;
-            padding-right: 15px; 
-        }
+        .l-left { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; padding-right: 15px; }
         .l-date { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; color: var(--accent-blue); }
-        .l-co { 
-            font-size: 0.9rem; font-weight: 600; color: #eee; 
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            transition: all 0.3s;
-        }
-        .l-right { 
-            display: flex; flex-direction: column; 
-            align-items: center; justify-content: center; 
-            min-width: 60px; flex-shrink: 0;
-        }
+        .l-co { font-size: 0.9rem; font-weight: 600; color: #eee; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: all 0.3s; }
+        .l-right { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 60px; flex-shrink: 0; }
         .l-val { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1; }
         .l-type { font-size: 0.6rem; text-transform: uppercase; color: var(--text-dim); margin-top: 2px; }
 
-        /* VALIDATION & ANIMATION */
         .input-error {
             border-color: var(--error-red) !important;
             box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
@@ -255,6 +251,7 @@
 <body>
 
     <div class="header">
+        <img id="img-header" class="header-icon" alt="logo">
         <div class="brand-name">MAA BHAVANI LIFTERS</div>
     </div>
 
@@ -278,11 +275,9 @@
     <div class="search-container section-gap">
         <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         <input type="text" id="co-in" class="search-box" placeholder="Search Company..." autocomplete="off">
-        
         <div id="clear-btn" class="clear-icon">
             <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </div>
-
         <div id="dd" class="dropdown"></div>
     </div>
 
@@ -314,14 +309,26 @@
     </div>
     <div id="log-list"></div>
 
+    <script src="imagedata.js"></script>
+
     <script>
         const companies = ["Simpolo Ceramics", "Sunheart Tiles", "Varmora Granito", "Qutone Ceramic", "Lioli Ceramica", "Monalisa Tiles", "Asian Granito India Limited (AGL)", "Other"];
         const coIn = document.getElementById('co-in');
         const dd = document.getElementById('dd');
-        const clearBtn = document.getElementById('clear-btn'); // New Element
+        const clearBtn = document.getElementById('clear-btn');
         const qtyIn = document.getElementById('qty-in');
         let selType = null;
         let isToday = true;
+
+        // --- ICON LOADING LOGIC ---
+        // Check if imagedata.js loaded successfully
+        if (typeof appIcons !== 'undefined' && appIcons.header) {
+            const hImg = document.getElementById('img-header');
+            hImg.src = appIcons.header;
+            hImg.style.display = 'block'; // Show icon only if loaded
+        } else {
+            console.log("Header icon not found in imagedata.js");
+        }
 
         // DATE LOGIC
         const dateBtn = document.getElementById('date-toggle-btn');
@@ -334,20 +341,15 @@
             setTimeout(() => dateBtn.style.borderColor = "var(--border-subtle)", 200);
         }
 
-        // --- SEARCH LOGIC UPDATED ---
-        
-        // Input Event: Show X icon if text exists
+        // SEARCH
         coIn.addEventListener('input', (e) => {
             coIn.classList.remove('input-error');
             const v = e.target.value.toLowerCase();
-            
-            // Toggle Clear Button
             if(v.length > 0) clearBtn.style.display = 'flex';
             else clearBtn.style.display = 'none';
 
             dd.innerHTML = '';
             if(!v) { dd.style.display='none'; return; }
-            
             const m = companies.filter(c => c.toLowerCase().includes(v));
             if(m.length) {
                 dd.style.display='block';
@@ -357,26 +359,19 @@
                         coIn.value = i; 
                         dd.style.display='none'; 
                         coIn.classList.remove('input-error');
-                        clearBtn.style.display = 'flex'; // Keep X visible after selection
-                        coIn.blur(); // KEYBOARD TRAP FIX: Close keyboard instantly
+                        clearBtn.style.display = 'flex';
+                        coIn.blur(); 
                     };
                     dd.appendChild(d);
                 });
             } else dd.style.display='none';
         });
 
-        // One-Tap Clear Event
         clearBtn.onclick = () => {
-            coIn.value = '';
-            dd.style.display = 'none';
-            clearBtn.style.display = 'none';
-            coIn.focus(); // Re-open keyboard as requested
+            coIn.value = ''; dd.style.display = 'none';
+            clearBtn.style.display = 'none'; coIn.focus();
         };
-
-        document.onclick = (e) => { 
-            // Close dropdown if clicked outside
-            if(!e.target.closest('.search-container')) dd.style.display='none'; 
-        }
+        document.onclick = (e) => { if(!e.target.closest('.search-container')) dd.style.display='none'; }
 
         // WORK TYPE
         function setType(el, type) {
@@ -393,16 +388,14 @@
             if(type === 'Hour') qtyIn.placeholder = "Total Hours";
             if(type === 'Shift') qtyIn.placeholder = "Shift Count";
         }
-        
         qtyIn.addEventListener('input', () => qtyIn.classList.remove('input-error'));
 
-        // SUBMIT LOGIC
+        // SUBMIT
         function submit() {
             const co = coIn.value.trim(); 
             const val = qtyIn.value.trim();
             let isValid = true;
 
-            // Smart Validation
             if(!co) { coIn.classList.add('input-error'); isValid = false; }
             if(!val) { qtyIn.classList.add('input-error'); isValid = false; }
             if(!selType) {
@@ -420,7 +413,6 @@
                 return;
             }
 
-            // Success
             const btn = document.querySelector('.confirm-btn');
             const oldTxt = btn.innerText; 
             btn.innerText = "SUCCESS ✓"; btn.style.background = "#22c55e"; btn.style.color = "#fff";
@@ -447,13 +439,11 @@
             </div>`;
             
             list.insertAdjacentHTML('afterbegin', row);
-            
             if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
 
             setTimeout(() => {
                 btn.innerText = oldTxt;
                 btn.style.background = ""; btn.style.color = "";
-                
                 coIn.value = '';
                 qtyIn.value = '';
                 document.querySelectorAll('.tile-btn').forEach(b => {
@@ -462,30 +452,23 @@
                 });
                 selType = null;
                 qtyIn.placeholder = "Enter Quantity";
-                clearBtn.style.display = 'none'; // Hide X on reset
+                clearBtn.style.display = 'none';
             }, 1500);
         }
 
-        // EXPAND / COLLAPSE
         function toggleRow(el) {
             el.classList.toggle('expanded');
             if(navigator.vibrate) navigator.vibrate(10);
-            
             if(el.classList.contains('expanded')) {
-                setTimeout(() => {
-                    if(el.classList.contains('expanded')) el.classList.remove('expanded');
-                }, 10000);
+                setTimeout(() => { if(el.classList.contains('expanded')) el.classList.remove('expanded'); }, 10000);
             }
         }
 
-        // DELETE
         function deleteEntry(id) {
             if(confirm("Delete entry?")) {
                 const wrapper = document.getElementById(`wrapper-${id}`);
                 wrapper.style.transition = "all 0.3s ease";
-                wrapper.style.opacity = "0";
-                wrapper.style.height = "0";
-                wrapper.style.marginBottom = "0";
+                wrapper.style.opacity = "0"; wrapper.style.height = "0"; wrapper.style.marginBottom = "0";
                 setTimeout(() => wrapper.remove(), 300);
                 if(navigator.vibrate) navigator.vibrate(50);
             }
