@@ -19,6 +19,7 @@
             --text-main: #ffffff;
             --text-dim: #64748b;
             --error-red: #ef4444;
+            --delete-bg: #dc2626;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -65,25 +66,20 @@
         /* DATE PILL */
         .date-pill {
             background: linear-gradient(145deg, #1e1e1e, #111);
-            border: 1px solid var(--border-subtle); 
-            padding: 5px 14px 5px 5px; 
-            border-radius: 30px; 
-            display: flex; align-items: center; gap: 8px;
+            border: 1px solid var(--border-subtle); padding: 5px 14px 5px 5px; 
+            border-radius: 30px; display: flex; align-items: center; gap: 8px;
             cursor: pointer; transition: border-color 0.2s;
         }
         .date-pill:active { border-color: var(--accent-blue); background: #222; }
 
         .date-icon-circle {
-            width: 28px; height: 28px; 
-            background: rgba(59, 130, 246, 0.15);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            width: 28px; height: 28px; background: rgba(59, 130, 246, 0.15);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
         }
         .date-icon-circle svg { width: 14px; fill: var(--accent-blue); }
         .date-text {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600; font-size: 0.85rem; color: var(--accent-silver);
-            padding-right: 5px;
+            font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.85rem; 
+            color: var(--accent-silver); padding-right: 5px;
         }
 
         /* LABELS */
@@ -99,8 +95,7 @@
             width: 100%; height: 48px; background: #0f0f0f;
             border: 1px solid var(--border-subtle); border-radius: 10px;
             padding: 0 20px 0 45px; color: #fff; font-size: 0.95rem;
-            outline: none; transition: border-color 0.2s;
-            -webkit-appearance: none;
+            outline: none; transition: border-color 0.2s; -webkit-appearance: none;
         }
         .search-box:focus { border-color: var(--accent-blue); }
         .search-icon {
@@ -122,8 +117,7 @@
             background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
             border: 1px solid var(--border-subtle); border-radius: 10px;
             height: 50px; display: flex; flex-direction: row; align-items: center; justify-content: center;
-            gap: 6px; cursor: pointer; transition: all 0.2s;
-            will-change: transform;
+            gap: 6px; cursor: pointer; transition: all 0.2s; will-change: transform;
         }
         .tile-btn svg { width: 18px; height: 18px; fill: var(--text-dim); }
         .tile-btn span { font-size: 0.7rem; font-weight: 600; color: var(--text-dim); }
@@ -142,7 +136,6 @@
         }
         .qty-input:focus { border-color: var(--accent-blue); }
 
-        /* CONFIRM BUTTON (STEALTH MODE) */
         .confirm-btn {
             width: 100%; padding: 16px;
             background: linear-gradient(180deg, #2d3748 0%, #1a202c 100%);
@@ -151,44 +144,61 @@
             border-radius: 10px; font-size: 0.9rem; font-weight: 700;
             letter-spacing: 2px; text-transform: uppercase;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: all 0.2s ease; cursor: pointer;
-            will-change: transform;
+            transition: all 0.2s ease; cursor: pointer; will-change: transform;
         }
         .confirm-btn:active {
             transform: scale(0.98); background: #000;
             border-color: var(--accent-blue); color: #fff;
         }
 
-        /* HISTORY */
+        /* HISTORY HEAD */
         .history-head {
             display: flex; justify-content: space-between;
             border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;
             margin-bottom: 12px; margin-top: 25px;
             color: var(--text-dim); font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
         }
+
+        /* --- IOS SWIPE STYLE --- */
+        .swipe-wrapper {
+            display: flex;
+            overflow-x: auto; /* Allows horizontal scroll */
+            scroll-snap-type: x mandatory; /* Snap effect */
+            scrollbar-width: none; /* Hide scrollbar Firefox */
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background: transparent;
+        }
+        .swipe-wrapper::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+
         .log-row {
+            min-width: 100%; /* Takes full width */
+            scroll-snap-align: start;
             display: flex; justify-content: space-between; align-items: center;
             background: linear-gradient(90deg, rgba(255,255,255,0.03), transparent);
-            padding: 10px 12px; border-radius: 8px; margin-bottom: 6px;
+            padding: 10px 12px; 
             border-left: 2px solid var(--border-subtle);
-            animation: slideUp 0.3s ease-out;
+            transition: opacity 0.3s;
         }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
+
+        /* HIDDEN DELETE BUTTON */
+        .delete-slide-btn {
+            min-width: 70px;
+            background: var(--delete-bg);
+            display: flex; align-items: center; justify-content: center;
+            scroll-snap-align: end;
+            cursor: pointer;
+        }
+        .delete-slide-btn svg { width: 20px; fill: #fff; }
+
         .l-left { display: flex; flex-direction: column; gap: 2px; }
         .l-date { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; color: var(--accent-blue); }
         .l-co { font-size: 0.9rem; font-weight: 600; color: #eee; }
-        
-        /* ALIGNMENT FIX */
-        .l-right { 
-            display: flex; flex-direction: column; 
-            align-items: center; justify-content: center;
-            min-width: 50px; 
-        }
+        .l-right { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 50px; }
         .l-val { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1; }
         .l-type { font-size: 0.6rem; text-transform: uppercase; color: var(--text-dim); margin-top: 2px; }
 
-        /* --- ERROR ANIMATIONS --- */
+        /* VALIDATION & ANIMATION */
         .input-error {
             border-color: var(--error-red) !important;
             box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
@@ -199,6 +209,12 @@
             20%, 80% { transform: translate3d(2px, 0, 0); }
             30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
             40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+        
+        .fade-out {
+            transform: translateX(-100%);
+            opacity: 0;
+            transition: all 0.3s ease;
         }
 
     </style>
@@ -216,7 +232,6 @@
             </div>
             <div class="p-name">Ramesh B.</div>
         </div>
-        
         <div class="date-pill" id="date-toggle-btn">
             <div class="date-icon-circle">
                 <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
@@ -268,7 +283,6 @@
         let selType = null;
         let isToday = true;
 
-        // DATE LOGIC
         const dateBtn = document.getElementById('date-toggle-btn');
         const dEl = document.getElementById('date-display');
         
@@ -279,9 +293,8 @@
             setTimeout(() => dateBtn.style.borderColor = "var(--border-subtle)", 200);
         }
 
-        // SEARCH LOGIC
         coIn.addEventListener('input', (e) => {
-            coIn.classList.remove('input-error'); // Clean error
+            coIn.classList.remove('input-error');
             const v = e.target.value.toLowerCase();
             dd.innerHTML = '';
             if(!v) { dd.style.display='none'; return; }
@@ -297,7 +310,6 @@
         });
         document.onclick = (e) => { if(!e.target.closest('.search-container')) dd.style.display='none'; }
 
-        // WORK TYPE LOGIC
         function setType(el, type) {
             document.querySelectorAll('.tile-btn').forEach(b => {
                 b.classList.remove('active');
@@ -316,13 +328,11 @@
         
         qtyIn.addEventListener('input', () => qtyIn.classList.remove('input-error'));
 
-        // SUBMIT LOGIC
         function submit() {
             const co = coIn.value.trim(); 
             const val = qtyIn.value.trim();
             let isValid = true;
 
-            // Validation Checks
             if(!co) { coIn.classList.add('input-error'); isValid = false; }
             if(!val) { qtyIn.classList.add('input-error'); isValid = false; }
             if(!selType) {
@@ -336,32 +346,36 @@
             }
 
             if(!isValid) {
-                if(navigator.vibrate) navigator.vibrate(200); // Error Vibrate
+                if(navigator.vibrate) navigator.vibrate(200);
                 return;
             }
 
-            // Success State
             const btn = document.querySelector('.confirm-btn');
             const oldTxt = btn.innerText; 
             btn.innerText = "SUCCESS ✓"; btn.style.background = "#22c55e"; btn.style.color = "#fff";
             
-            // Add Row
             const list = document.getElementById('log-list');
             const dStr = dEl.innerText.split(', ')[1];
+            const rowId = Date.now();
             
+            // --- NEW SWIPE STRUCTURE ---
             const row = `
-            <div class="log-row">
-                <div class="l-left"><div class="l-date">${dStr}</div><div class="l-co">${co}</div></div>
-                <div class="l-right"><div class="l-val">${val}</div><div class="l-type">${selType}</div></div>
+            <div class="swipe-wrapper" id="row-${rowId}">
+                <div class="log-row">
+                    <div class="l-left"><div class="l-date">${dStr}</div><div class="l-co">${co}</div></div>
+                    <div class="l-right"><div class="l-val">${val}</div><div class="l-type">${selType}</div></div>
+                </div>
+                <div class="delete-slide-btn" onclick="deleteEntry('${rowId}')">
+                    <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                </div>
             </div>`;
+            
             list.insertAdjacentHTML('afterbegin', row);
             
-            if(navigator.vibrate) navigator.vibrate([50, 50, 50]); // Success Vibrate
+            if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
 
-            // Reset
             setTimeout(() => {
                 btn.innerText = oldTxt;
-                // Revert to Stealth CSS
                 btn.style.background = ""; btn.style.color = "";
                 
                 coIn.value = '';
@@ -373,6 +387,18 @@
                 selType = null;
                 qtyIn.placeholder = "Enter Quantity";
             }, 1500);
+        }
+
+        function deleteEntry(id) {
+            if(confirm("Delete entry?")) {
+                const el = document.getElementById(`row-${id}`);
+                el.style.transition = "all 0.3s ease";
+                el.style.opacity = "0";
+                el.style.height = "0";
+                el.style.marginBottom = "0";
+                setTimeout(() => el.remove(), 300);
+                if(navigator.vibrate) navigator.vibrate(50);
+            }
         }
     </script>
 </body>
