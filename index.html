@@ -4,296 +4,271 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Maa Bhavani Lifters</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* AURORA PALETTE */
-            --bg-deep: #0f0c29;
-            --purple-glow: #7b2ff7;
-            --pink-glow: #f107a3;
-            --cyan-accent: #00f2ff;
-            --glass-surface: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.12);
+            /* TITANIUM PALETTE */
+            --bg-body: #050505;
+            --card-bg: rgba(20, 20, 20, 0.7);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(255, 255, 255, 0.2);
+            --accent-blue: #3b82f6; /* Premium Tech Blue */
+            --accent-silver: #e2e8f0;
             --text-main: #ffffff;
-            --text-muted: #bdaed9; /* Light lavender grey */
+            --text-dim: #64748b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            background-color: var(--bg-deep);
-            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            /* Subtle Mesh Gradient - Very Dark */
+            background-image: radial-gradient(circle at 50% 0%, #111827 0%, #000000 70%);
+            font-family: 'Manrope', sans-serif;
             color: var(--text-main);
             min-height: 100vh;
-            padding-bottom: 40px;
-            overflow-x: hidden;
-            
-            /* THE AURORA GRADIENT BACKGROUND (CSS Only - No Lag) */
-            background-image: 
-                radial-gradient(circle at 0% 0%, rgba(123, 47, 247, 0.25) 0%, transparent 50%),
-                radial-gradient(circle at 100% 0%, rgba(241, 7, 163, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 50% 100%, rgba(0, 242, 255, 0.1) 0%, transparent 50%);
-            background-attachment: fixed;
-        }
-
-        /* --- 1. GLASS HEADER --- */
-        .glass-header {
-            display: flex; align-items: center; justify-content: center;
             padding: 20px;
-            background: rgba(15, 12, 41, 0.7); /* Semi-transparent */
-            backdrop-filter: blur(20px); /* The Blur Effect */
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            position: sticky; top: 0; z-index: 100;
-            margin-bottom: 30px;
         }
 
-        .brand {
-            font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: 1.5px;
+        /* --- 1. HEADER (Metal Finish) --- */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+        }
+
+        .brand-icon svg { width: 36px; height: 36px; fill: var(--text-main); filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
+
+        .brand-name {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            /* Gradient Text */
-            background: linear-gradient(to right, #fff, #e0c3fc);
+            background: linear-gradient(to bottom, #fff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: flex; align-items: center; gap: 10px;
         }
 
-        .brand svg { width: 24px; height: 24px; fill: var(--cyan-accent); filter: drop-shadow(0 0 5px var(--cyan-accent)); }
-
-        .container { padding: 0 20px; }
-
-        /* --- 2. PROFILE & DATE CARD --- */
-        .glass-card {
-            background: var(--glass-surface);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 12px 15px;
+        /* --- 2. INFO BAR (Profile & Date) --- */
+        .info-bar {
             display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            margin-bottom: 35px;
         }
 
-        .user-info { display: flex; align-items: center; gap: 12px; }
-        
-        .avatar {
-            width: 42px; height: 42px; border-radius: 50%;
-            border: 2px solid var(--purple-glow);
-            padding: 2px; /* Gap for border */
-            background-clip: content-box;
+        .profile {
+            display: flex; align-items: center; gap: 12px;
+            background: var(--card-bg);
+            padding: 6px 15px 6px 6px;
+            border-radius: 50px;
+            border: 1px solid var(--border-subtle);
         }
         
-        .u-text h3 { font-size: 0.95rem; font-weight: 700; }
-        .u-text p { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.5px; }
+        .p-img { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--accent-blue); }
+        .p-name { font-size: 0.85rem; font-weight: 700; color: #fff; }
 
-        .date-badge {
-            font-size: 0.85rem; font-weight: 600;
-            color: var(--cyan-accent);
-            background: rgba(0, 242, 255, 0.1);
-            padding: 8px 12px; border-radius: 8px;
-            border: 1px solid rgba(0, 242, 255, 0.2);
+        /* The DATE PILL (Wide & Clean) */
+        .date-pill {
+            background: linear-gradient(145deg, #1e1e1e, #111);
+            border: 1px solid var(--border-subtle);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600; font-size: 0.95rem;
+            color: var(--accent-silver);
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        /* --- 3. INPUTS (Cutout Look) --- */
-        .section-title {
-            font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px;
-            text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700;
-            margin-left: 5px;
+        /* --- 3. INPUT (Matte Black) --- */
+        .label {
+            font-size: 0.75rem; color: var(--accent-blue); font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block;
         }
 
-        .input-group { position: relative; margin-bottom: 30px; }
+        .search-container { position: relative; margin-bottom: 35px; }
 
-        .aurora-input {
-            width: 100%; height: 55px;
-            background: rgba(0, 0, 0, 0.3); /* Darker than body for cutout effect */
-            border: 1px solid var(--glass-border);
+        .search-box {
+            width: 100%; height: 56px;
+            background: #0f0f0f; /* Matte Black */
+            border: 1px solid var(--border-subtle);
             border-radius: 12px;
-            padding: 0 20px 0 50px; /* Fixed padding */
-            color: #fff; font-size: 1rem; font-family: 'Outfit', sans-serif;
+            padding: 0 20px 0 50px;
+            color: #fff; font-size: 1rem;
+            font-family: 'Manrope', sans-serif;
             outline: none; transition: 0.3s;
         }
 
-        .aurora-input:focus {
-            border-color: var(--purple-glow);
-            box-shadow: 0 0 15px rgba(123, 47, 247, 0.3);
-            background: rgba(0, 0, 0, 0.5);
+        .search-box:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
         }
 
-        .icon-left {
+        .search-icon {
             position: absolute; top: 50%; left: 18px; transform: translateY(-50%);
-            width: 20px; fill: var(--text-muted);
+            width: 20px; fill: var(--text-dim); pointer-events: none;
         }
 
-        /* Dropdown */
-        .dropdown-list {
+        .dropdown {
             position: absolute; top: 110%; left: 0; right: 0;
-            background: #1a1638; border: 1px solid var(--glass-border);
+            background: #111; border: 1px solid var(--border-subtle);
             border-radius: 12px; z-index: 50; display: none;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
         }
-        .dd-item { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; color: #ddd; }
-        .dd-item:active { background: var(--purple-glow); color: #fff; }
+        .dd-item { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc; font-size: 0.9rem; }
+        .dd-item:active { background: var(--accent-blue); color: #fff; }
 
-        /* --- 4. NEON BUTTONS GRID --- */
-        .grid-buttons {
+        /* --- 4. BUTTONS (Titanium Finish) --- */
+        .btn-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 35px;
         }
 
-        .neon-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 14px;
+        .tile-btn {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
             height: 90px;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 10px;
-            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative; overflow: hidden;
+            gap: 8px;
+            cursor: pointer; transition: all 0.2s;
         }
 
-        .neon-btn svg { width: 28px; height: 28px; fill: var(--text-muted); transition: 0.2s; }
-        .neon-btn span { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); transition: 0.2s; }
+        .tile-btn svg { width: 26px; height: 26px; fill: var(--text-dim); transition: 0.2s; }
+        .tile-btn span { font-size: 0.75rem; font-weight: 600; color: var(--text-dim); transition: 0.2s; }
 
-        /* Active State (The Magic) */
-        .neon-btn.active {
-            border-color: var(--purple-glow);
-            background: linear-gradient(135deg, rgba(123, 47, 247, 0.2), rgba(241, 7, 163, 0.1));
-            box-shadow: 0 0 20px rgba(123, 47, 247, 0.2);
-            transform: translateY(-2px);
+        .tile-btn.active {
+            border-color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.08);
         }
-        .neon-btn.active svg { fill: #fff; transform: scale(1.1); filter: drop-shadow(0 0 5px var(--purple-glow)); }
-        .neon-btn.active span { color: #fff; }
+        .tile-btn.active svg { fill: var(--accent-blue); transform: scale(1.1); }
+        .tile-btn.active span { color: #fff; }
 
-        /* --- 5. VALUE INPUT & SUBMIT --- */
-        #value-section { display: none; animation: popUp 0.3s ease-out; }
-        @keyframes popUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        /* --- 5. QUANTITY & SUBMIT --- */
+        #qty-area { display: none; animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .value-wrapper { margin-bottom: 25px; }
-        
-        .big-input {
-            width: 100%; height: 70px;
-            background: transparent; border: 2px solid var(--glass-border);
-            border-radius: 14px;
-            text-align: center; color: #fff;
-            font-size: 2rem; font-weight: 700;
-            outline: none; font-family: 'Outfit', sans-serif;
-        }
-        .big-input:focus { border-color: var(--pink-glow); box-shadow: 0 0 15px rgba(241, 7, 163, 0.2); }
+        /* Fixed Spacing */
+        .input-spacer { margin-bottom: 25px; }
 
-        .cta-btn {
-            width: 100%; padding: 18px;
-            /* Aurora Gradient Button */
-            background: linear-gradient(90deg, var(--purple-glow), var(--pink-glow));
-            color: #fff; border: none; border-radius: 12px;
-            font-size: 1.1rem; font-weight: 700; letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(123, 47, 247, 0.4);
-            cursor: pointer; transition: 0.2s;
-        }
-        .cta-btn:active { transform: scale(0.98); }
-
-        /* --- 6. HISTORY --- */
-        .history-label {
-            display: flex; justify-content: space-between; align-items: flex-end;
-            margin-bottom: 15px; margin-top: 40px;
-            border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;
-        }
-        .hl-main { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
-        .hl-sub { font-size: 0.7rem; color: var(--purple-glow); }
-
-        .log-entry {
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
+        .qty-input {
+            width: 100%; height: 65px;
+            background: transparent;
+            border: 2px solid var(--border-subtle);
             border-radius: 12px;
-            padding: 15px; margin-bottom: 10px;
+            color: #fff; text-align: center;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2rem; font-weight: 700;
+            outline: none;
+        }
+        .qty-input:focus { border-color: var(--accent-blue); }
+
+        .confirm-btn {
+            width: 100%; padding: 18px;
+            background: var(--text-main); /* White Button */
+            color: #000; /* Black Text */
+            border: none; border-radius: 12px;
+            font-size: 1rem; font-weight: 800; letter-spacing: 1px;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+            transition: transform 0.1s;
+        }
+        .confirm-btn:active { transform: scale(0.97); }
+
+        /* --- 6. HISTORY LOG (Data Table Look) --- */
+        .history-head {
+            display: flex; justify-content: space-between;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 10px; margin-bottom: 15px; margin-top: 40px;
+            color: var(--text-dim); font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
         }
 
-        .log-left div:first-child { font-size: 0.75rem; color: var(--pink-glow); font-weight: 600; margin-bottom: 4px; }
-        .log-left div:last-child { font-size: 1rem; font-weight: 500; }
+        .log-row {
+            display: flex; justify-content: space-between; align-items: center;
+            background: linear-gradient(90deg, rgba(255,255,255,0.03), transparent);
+            padding: 14px; border-radius: 8px; margin-bottom: 8px;
+            border-left: 2px solid var(--border-subtle);
+        }
 
-        .log-right { text-align: right; }
-        .log-right div:first-child { font-size: 1.4rem; font-weight: 700; line-height: 1; }
-        .log-right div:last-child { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+        .l-left { display: flex; flex-direction: column; gap: 4px; }
+        .l-date { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; color: var(--accent-blue); }
+        .l-co { font-size: 0.95rem; font-weight: 600; color: #eee; }
+
+        .l-right { text-align: right; }
+        .l-val { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: #fff; line-height: 1; }
+        .l-type { font-size: 0.65rem; text-transform: uppercase; color: var(--text-dim); margin-top: 3px; }
 
     </style>
 </head>
 <body>
 
-    <nav class="glass-header">
-        <div class="brand">
+    <div class="header">
+        <div class="brand-icon">
             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            MAA BHAVANI LIFTERS
         </div>
-    </nav>
-
-    <div class="container">
-        
-        <div class="glass-card">
-            <div class="user-info">
-                <img src="https://i.pravatar.cc/150?img=11" class="avatar">
-                <div class="u-text">
-                    <h3>Ramesh Bhai</h3>
-                    <p>DRIVER ID: 402</p>
-                </div>
-            </div>
-            <div class="date-badge" id="date-txt">Today, 31/12/2025</div>
-        </div>
-
-        <div class="section-title">Select Client</div>
-        <div class="input-group">
-            <svg class="icon-left" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-            <input type="text" id="co-in" class="aurora-input" placeholder="Search Company..." autocomplete="off">
-            <div id="dd-list" class="dropdown-list"></div>
-        </div>
-
-        <div class="section-title">Work Type</div>
-        <div class="grid-buttons">
-            <div class="neon-btn" onclick="setType(this, 'Container')">
-                <svg viewBox="0 0 24 24"><path d="M4 15h16v-2H4v2zm0 4h16v-2H4v2zm0-8h16V9H4v2zm0-6v2h16V5H4z"/></svg>
-                <span>Container</span>
-            </div>
-            <div class="neon-btn" onclick="setType(this, 'Hour')">
-                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                <span>Hour</span>
-            </div>
-            <div class="neon-btn" onclick="setType(this, 'Shift')">
-                <svg viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
-                <span>Shift</span>
-            </div>
-        </div>
-
-        <div id="value-section">
-            <div class="section-title">Enter Quantity</div>
-            <div class="value-wrapper">
-                <input type="number" id="val-in" class="big-input" placeholder="0">
-            </div>
-            <button class="cta-btn" onclick="submit()">CONFIRM ENTRY</button>
-        </div>
-
-        <div class="history-label">
-            <span class="hl-main">RECENT LOGS</span>
-            <span class="hl-sub">LAST 2 DAYS</span>
-        </div>
-        <div id="log-list">
-            </div>
-
+        <div class="brand-name">MAA BHAVANI LIFTERS</div>
     </div>
+
+    <div class="info-bar">
+        <div class="profile">
+            <img src="https://i.pravatar.cc/150?img=11" class="p-img">
+            <div class="p-name">Ramesh Bhai</div>
+        </div>
+        <div class="date-pill" id="date-display">Today, 31/12/2025</div>
+    </div>
+
+    <span class="label">Select Client</span>
+    <div class="search-container">
+        <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="co-in" class="search-box" placeholder="Search Company..." autocomplete="off">
+        <div id="dd" class="dropdown"></div>
+    </div>
+
+    <span class="label">Work Type</span>
+    <div class="btn-grid">
+        <div class="tile-btn" onclick="setType(this, 'Container')">
+            <svg viewBox="0 0 24 24"><path d="M4 15h16v-2H4v2zm0 4h16v-2H4v2zm0-8h16V9H4v2zm0-6v2h16V5H4z"/></svg>
+            <span>Container</span>
+        </div>
+        <div class="tile-btn" onclick="setType(this, 'Hour')">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            <span>Hour</span>
+        </div>
+        <div class="tile-btn" onclick="setType(this, 'Shift')">
+            <svg viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+            <span>Shift</span>
+        </div>
+    </div>
+
+    <div id="qty-area">
+        <span class="label">Quantity</span>
+        <div class="input-spacer">
+            <input type="number" id="qty-in" class="qty-input" placeholder="0">
+        </div>
+        <button class="confirm-btn" onclick="submit()">CONFIRM ENTRY</button>
+    </div>
+
+    <div class="history-head">
+        <span>RECENT LOGS</span>
+        <span>LAST 2 DAYS</span>
+    </div>
+    <div id="log-list">
+        </div>
 
     <script>
         // CONFIG
         const companies = ["Simpolo Ceramics", "Sunheart Tiles", "Varmora Granito", "Qutone Ceramic", "Lioli Ceramica", "Monalisa Tiles", "Other"];
         const coIn = document.getElementById('co-in');
-        const dd = document.getElementById('dd-list');
+        const dd = document.getElementById('dd');
         let selType = null;
         let isToday = true;
 
-        // 1. DATE DEMO
-        const dTxt = document.getElementById('date-txt');
-        dTxt.onclick = () => {
+        // 1. DATE TOGGLE (Demo)
+        const dEl = document.getElementById('date-display');
+        dEl.onclick = () => {
             isToday = !isToday;
-            dTxt.innerText = isToday ? "Today, 31/12/2025" : "Yesterday, 30/12/2025";
+            dEl.innerText = isToday ? "Today, 31/12/2025" : "Yesterday, 30/12/2025";
         }
 
         // 2. SEARCH
@@ -313,23 +288,22 @@
                 });
             } else dd.style.display='none';
         });
-
-        document.onclick = (e) => { if(!e.target.closest('.input-group')) dd.style.display='none'; }
+        document.onclick = (e) => { if(!e.target.closest('.search-container')) dd.style.display='none'; }
 
         // 3. SELECT TYPE
         function setType(el, type) {
-            document.querySelectorAll('.neon-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tile-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
             selType = type;
 
-            const sec = document.getElementById('value-section');
-            sec.style.display = 'block';
+            const area = document.getElementById('qty-area');
+            area.style.display = 'block';
             
-            const inp = document.getElementById('val-in');
+            const inp = document.getElementById('qty-in');
             inp.value = '';
             inp.focus();
-
-            // Dynamic Placeholder
+            
+            // Dynamic Placeholders
             if(type === 'Container') inp.placeholder = "No. of Containers";
             if(type === 'Hour') inp.placeholder = "Total Hours";
             if(type === 'Shift') inp.placeholder = "Shift Count";
@@ -338,38 +312,41 @@
         // 4. SUBMIT
         function submit() {
             const co = coIn.value;
-            const val = document.getElementById('val-in').value;
+            const val = document.getElementById('qty-in').value;
 
-            if(!co || !selType || !val) { alert("Please complete form"); return; }
+            if(!co || !selType || !val) { alert("Please complete details"); return; }
 
-            const btn = document.querySelector('.cta-btn');
+            const btn = document.querySelector('.confirm-btn');
             const oldTxt = btn.innerText;
-            
             btn.innerText = "SUCCESS ✓";
-            
+            btn.style.background = "#22c55e"; // Success Green
+            btn.style.color = "#fff";
+
+            // Add to History
             const list = document.getElementById('log-list');
-            const dStr = dTxt.innerText.split(', ')[1]; // Get "31/12/2025"
+            const dStr = dEl.innerText.split(', ')[1]; // 31/12/2025
             
-            // Rich Log Entry
-            const item = `
-            <div class="log-entry" style="animation: popUp 0.3s">
-                <div class="log-left">
-                    <div>${dStr}</div>
-                    <div>${co}</div>
+            const row = `
+            <div class="log-row" style="animation: slideUp 0.3s">
+                <div class="l-left">
+                    <div class="l-date">${dStr}</div>
+                    <div class="l-co">${co}</div>
                 </div>
-                <div class="log-right">
-                    <div>${val}</div>
-                    <div>${selType}</div>
+                <div class="l-right">
+                    <div class="l-val">${val}</div>
+                    <div class="l-type">${selType}</div>
                 </div>
             </div>`;
             
-            list.insertAdjacentHTML('afterbegin', item);
+            list.insertAdjacentHTML('afterbegin', row);
 
             setTimeout(() => {
                 btn.innerText = oldTxt;
-                document.getElementById('value-section').style.display = 'none';
+                btn.style.background = "#ffffff";
+                btn.style.color = "#000";
+                document.getElementById('qty-area').style.display = 'none';
                 coIn.value = '';
-                document.querySelectorAll('.neon-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tile-btn').forEach(b => b.classList.remove('active'));
             }, 1500);
         }
     </script>
