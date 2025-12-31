@@ -8,9 +8,8 @@
     
     <style>
         :root {
-            /* TITANIUM PALETTE (Same Premium Look) */
             --bg-body: #050505;
-            --card-bg: rgba(25, 25, 25, 0.8);
+            --card-bg: rgba(25, 25, 25, 0.9);
             --border-subtle: rgba(255, 255, 255, 0.1);
             --accent-blue: #3b82f6;
             --accent-silver: #e2e8f0;
@@ -26,78 +25,52 @@
             font-family: 'Manrope', sans-serif;
             color: var(--text-main);
             min-height: 100vh;
-            /* Tighter padding */
             padding: 15px;
         }
 
-        /* --- 1. HEADER (Icon Removed, Compact) --- */
+        /* HEADER */
         .header {
-            text-align: center;
-            /* Reduced margins */
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            text-align: center; margin-bottom: 20px; padding-bottom: 15px;
             border-bottom: 1px solid var(--border-subtle);
         }
-
         .brand-name {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.3rem; /* Slightly smaller font */
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
             background: linear-gradient(to bottom, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        /* --- 2. INFO BAR (Tighter) --- */
+        /* INFO BAR */
         .info-bar {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 25px; /* Reduced margin */
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
         }
-
         .profile {
             display: flex; align-items: center; gap: 10px;
-            background: var(--card-bg);
-            padding: 5px 12px 5px 5px;
-            border-radius: 50px;
-            border: 1px solid var(--border-subtle);
+            background: var(--card-bg); padding: 5px 12px 5px 5px;
+            border-radius: 50px; border: 1px solid var(--border-subtle);
         }
-        
         .p-img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--accent-blue); }
         .p-name { font-size: 0.8rem; font-weight: 700; color: #fff; }
-
         .date-pill {
             background: linear-gradient(145deg, #1e1e1e, #111);
-            border: 1px solid var(--border-subtle);
-            padding: 8px 14px; /* Reduced padding */
-            border-radius: 8px;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600; font-size: 0.85rem;
-            color: var(--accent-silver);
-            letter-spacing: 0.5px;
+            border: 1px solid var(--border-subtle); padding: 8px 14px;
+            border-radius: 8px; font-family: 'Rajdhani', sans-serif;
+            font-weight: 600; font-size: 0.85rem; color: var(--accent-silver);
         }
 
-        /* --- 3. COMPONENTS & SPACING --- */
+        /* SHARED STYLES */
         .label {
             font-size: 0.7rem; color: var(--accent-blue); font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1px; 
-            margin-bottom: 8px; /* Tighter gap */
-            display: block;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block;
         }
+        .section-gap { margin-bottom: 20px; }
 
-        .section-gap { margin-bottom: 25px; } /* Standard reduced gap */
-
-        /* Search Box (Shatter height) */
+        /* SEARCH */
         .search-container { position: relative; }
         .search-box {
-            width: 100%; height: 48px; /* Reduced height */
-            background: #0f0f0f;
-            border: 1px solid var(--border-subtle);
-            border-radius: 10px;
-            padding: 0 20px 0 45px;
-            color: #fff; font-size: 0.95rem;
-            font-family: 'Manrope', sans-serif;
+            width: 100%; height: 48px; background: #0f0f0f;
+            border: 1px solid var(--border-subtle); border-radius: 10px;
+            padding: 0 20px 0 45px; color: #fff; font-size: 0.95rem;
             outline: none; transition: 0.3s;
         }
         .search-box:focus { border-color: var(--accent-blue); }
@@ -105,86 +78,61 @@
             position: absolute; top: 50%; left: 15px; transform: translateY(-50%);
             width: 18px; fill: var(--text-dim); pointer-events: none;
         }
-
-        /* Dropdown Tighter */
         .dropdown {
             position: absolute; top: 105%; left: 0; right: 0;
             background: #111; border: 1px solid var(--border-subtle);
             border-radius: 10px; z-index: 50; display: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
-            max-height: 180px; overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9); max-height: 180px; overflow-y: auto;
         }
         .dd-item { padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc; font-size: 0.85rem; }
 
-        /* --- 4. NEW COMPACT BUTTONS (Horizontal Capsules) --- */
-        .btn-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
-        }
-
+        /* BUTTONS (Horizontal Capsules) */
+        .btn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .tile-btn {
             background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
-            border: 1px solid var(--border-subtle);
-            border-radius: 10px;
-            height: 50px; /* Much shorter */
-            display: flex; flex-direction: row; /* Side by side */
-            align-items: center; justify-content: center;
-            gap: 8px; /* Space between icon/text */
-            cursor: pointer; transition: all 0.2s;
+            border: 1px solid var(--border-subtle); border-radius: 10px;
+            height: 50px; display: flex; flex-direction: row; align-items: center; justify-content: center;
+            gap: 6px; cursor: pointer; transition: all 0.2s;
         }
-
-        .tile-btn svg { width: 20px; height: 20px; fill: var(--text-dim); transition: 0.2s; }
-        .tile-btn span { font-size: 0.75rem; font-weight: 600; color: var(--text-dim); transition: 0.2s; }
-
-        .tile-btn.active {
-            border-color: var(--accent-blue);
-            background: rgba(59, 130, 246, 0.15);
-        }
+        .tile-btn svg { width: 18px; height: 18px; fill: var(--text-dim); }
+        .tile-btn span { font-size: 0.7rem; font-weight: 600; color: var(--text-dim); }
+        
+        .tile-btn.active { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.15); }
         .tile-btn.active svg { fill: var(--accent-blue); }
         .tile-btn.active span { color: #fff; }
 
-        /* --- 5. COMPACT QUANTITY SECTION --- */
-        #qty-area { display: none; animation: slideUp 0.2s ease-out; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .input-spacer { margin-bottom: 15px; } /* Tighter gap */
+        /* QUANTITY AREA (ALWAYS VISIBLE) */
+        #qty-area { display: block; } /* Permanent */
 
         .qty-input {
-            width: 100%; height: 55px; /* Reduced height */
-            background: transparent;
-            border: 2px solid var(--border-subtle);
-            border-radius: 10px;
-            color: #fff; text-align: center;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.6rem; font-weight: 700;
-            outline: none;
+            width: 100%; height: 55px; background: transparent;
+            border: 2px solid var(--border-subtle); border-radius: 10px;
+            color: #fff; text-align: center; font-family: 'Rajdhani', sans-serif;
+            font-size: 1.6rem; font-weight: 700; outline: none; margin-bottom: 15px;
+            transition: border-color 0.3s;
         }
         .qty-input:focus { border-color: var(--accent-blue); }
 
         .confirm-btn {
-            width: 100%; padding: 15px; /* Reduced padding */
-            background: var(--text-main); color: #000;
-            border: none; border-radius: 10px;
-            font-size: 0.95rem; font-weight: 800; letter-spacing: 1px;
-            transition: transform 0.1s;
+            width: 100%; padding: 15px; background: var(--text-main); color: #000;
+            border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 800;
+            letter-spacing: 1px; transition: transform 0.1s;
         }
         .confirm-btn:active { transform: scale(0.97); }
 
-        /* --- 6. COMPACT HISTORY --- */
+        /* HISTORY */
         .history-head {
             display: flex; justify-content: space-between;
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 8px; margin-bottom: 12px; margin-top: 30px; /* Reduced margin top */
+            border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;
+            margin-bottom: 12px; margin-top: 25px;
             color: var(--text-dim); font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
         }
-
         .log-row {
             display: flex; justify-content: space-between; align-items: center;
             background: linear-gradient(90deg, rgba(255,255,255,0.03), transparent);
-            padding: 10px 12px; /* Tighter padding */
-            border-radius: 8px; margin-bottom: 6px;
+            padding: 10px 12px; border-radius: 8px; margin-bottom: 6px;
             border-left: 2px solid var(--border-subtle);
         }
-        /* Content fonts slightly smaller */
         .l-date { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; color: var(--accent-blue); }
         .l-co { font-size: 0.9rem; font-weight: 600; color: #eee; }
         .l-val { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1; }
@@ -231,9 +179,7 @@
 
     <div id="qty-area">
         <span class="label">Quantity</span>
-        <div class="input-spacer">
-            <input type="number" id="qty-in" class="qty-input" placeholder="0">
-        </div>
+        <input type="number" id="qty-in" class="qty-input" placeholder="Enter Quantity">
         <button class="confirm-btn" onclick="submit()">CONFIRM ENTRY</button>
     </div>
 
@@ -241,11 +187,9 @@
         <span>RECENT LOGS</span>
         <span>LAST 2 DAYS</span>
     </div>
-    <div id="log-list">
-        </div>
+    <div id="log-list"></div>
 
     <script>
-        // --- SAME JS LOGIC AS BEFORE ---
         const companies = ["Simpolo Ceramics", "Sunheart Tiles", "Varmora Granito", "Qutone Ceramic", "Lioli Ceramica", "Monalisa Tiles", "Other"];
         const coIn = document.getElementById('co-in');
         const dd = document.getElementById('dd');
@@ -275,30 +219,44 @@
             document.querySelectorAll('.tile-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
             selType = type;
-            const area = document.getElementById('qty-area'); area.style.display = 'block';
-            const inp = document.getElementById('qty-in'); inp.value = ''; inp.focus();
+            const inp = document.getElementById('qty-in');
+            
+            // Focus on input but don't clear value if user already typed
+            inp.focus();
             if(type === 'Container') inp.placeholder = "No. of Containers";
             if(type === 'Hour') inp.placeholder = "Total Hours";
             if(type === 'Shift') inp.placeholder = "Shift Count";
         }
 
         function submit() {
-            const co = coIn.value; const val = document.getElementById('qty-in').value;
-            if(!co || !selType || !val) { alert("Please complete details"); return; }
+            const co = coIn.value; 
+            const val = document.getElementById('qty-in').value;
+            
+            // VALIDATION: Type MUST be selected
+            if(!selType) { alert("Please select a Work Type (Container/Hour/Shift)!"); return; }
+            if(!co || !val) { alert("Please fill Company and Quantity!"); return; }
+
             const btn = document.querySelector('.confirm-btn');
-            const oldTxt = btn.innerText; btn.innerText = "SUCCESS ✓"; btn.style.background = "#22c55e"; btn.style.color = "#fff";
+            const oldTxt = btn.innerText; 
+            btn.innerText = "SUCCESS ✓"; btn.style.background = "#22c55e"; btn.style.color = "#fff";
+            
             const list = document.getElementById('log-list');
             const dStr = dEl.innerText.split(', ')[1];
+            
             const row = `
             <div class="log-row" style="animation: slideUp 0.3s">
                 <div class="l-left"><div class="l-date">${dStr}</div><div class="l-co">${co}</div></div>
                 <div class="l-right"><div class="l-val">${val}</div><div class="l-type">${selType}</div></div>
             </div>`;
             list.insertAdjacentHTML('afterbegin', row);
+            
             setTimeout(() => {
                 btn.innerText = oldTxt; btn.style.background = "#ffffff"; btn.style.color = "#000";
-                document.getElementById('qty-area').style.display = 'none'; coIn.value = '';
+                coIn.value = '';
+                document.getElementById('qty-in').value = '';
                 document.querySelectorAll('.tile-btn').forEach(b => b.classList.remove('active'));
+                selType = null; // Reset selection
+                document.getElementById('qty-in').placeholder = "Enter Quantity";
             }, 1500);
         }
     </script>
