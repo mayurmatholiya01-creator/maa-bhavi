@@ -314,11 +314,11 @@
     <div id="log-list"></div>
 
     <script src="imagedata.js"></script>
-    <script type="module">
-      // Import the functions you need from the SDKs you need
+<script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+      // Database ki library import kar rahe hain
+      import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"; 
 
-      // Your web app's Firebase configuration
       const firebaseConfig = {
         apiKey: "AIzaSyBK05TWONeEEKmupUFhdvYIakgJa1xL0aA",
         authDomain: "maa-bhavani-lifters.firebaseapp.com",
@@ -328,12 +328,29 @@
         appId: "1:339563522690:web:b58e017d62371ea6caa29b"
       };
 
-      // Initialize Firebase
+      // App aur Database start kar rahe hain
       const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Ye function hum banayenge taaki 'submit()' isse use kar sake
+      window.addDataToFirebase = async function(co, qty, type, date) {
+          try {
+              // 'logs' naam ke folder mein data save hoga
+              await addDoc(collection(db, "logs"), {
+                  company: co,
+                  quantity: qty,
+                  type: type,
+                  date: date,
+                  timestamp: new Date() // Sahi time note karne ke liye
+              });
+              console.log("Data Saved to Firebase! 🎉");
+          } catch (e) {
+              console.error("Error saving data: ", e);
+              alert("Error: Data save nahi hua! Internet check karein.");
+          }
+      }
       
-      // Make app global so we can use it later
-      window.firebaseApp = app;
-      console.log("Firebase Connected Successfully ✅");
+      console.log("Database Ready ✅");
     </script>
 
     <script>
@@ -444,6 +461,7 @@
             
             const list = document.getElementById('log-list');
             const dStr = dEl.innerText.split(', ')[1];
+            window.addDataToFirebase(co, val, selType, dStr);
             const rowId = Date.now();
             
             const row = `
